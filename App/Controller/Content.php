@@ -24,11 +24,7 @@ class Content {
 	 * @return string
 	 */
 	public function _restrict_content( $content ) {
-		if ( ! $this->_is_restriction( get_post() ) ) {
-			return $content;
-		}
-
-		if ( is_user_logged_in() ) {
+		if ( ! $this->_is_restricted( get_post() ) ) {
 			return $content;
 		}
 
@@ -44,7 +40,7 @@ class Content {
 	 * @return string
 	 */
 	public function _restrict_excerpt( $content ) {
-		if ( ! $this->_is_restriction( get_post() ) ) {
+		if ( ! $this->_is_restricted( get_post() ) ) {
 			return $content;
 		}
 
@@ -59,16 +55,14 @@ class Content {
 	 * @param WP_Post $_post
 	 * @return boolean
 	 */
-	protected function _is_restriction( $_post ) {
-		if ( ! $_post ) {
-			return false;
-		}
-
+	protected function _is_restricted( $_post ) {
+		$return = true;
 		$restriction = (int) get_post_meta( $_post->ID, Config::get( 'restriction-key' ), true );
-		if ( 1 !== $restriction ) {
-			return false;
+
+		if ( ! $_post || is_user_logged_in() || 1 !== $restriction ) {
+			$return = false;
 		}
 
-		return true;
+		return apply_filters( 'snow_monkey_member_post_is_restricted', $return, $_post );
 	}
 }
