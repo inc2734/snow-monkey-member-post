@@ -5,6 +5,19 @@
  * @license GPL-2.0+
  */
 
+$extended = get_extended( $post->post_content );
+if ( ! empty( $extended['extended'] ) ) {
+	/**
+	 * @see https://developer.wordpress.org/reference/functions/wp_trim_excerpt/
+	 */
+	$excerpt_length = apply_filters( 'excerpt_length', 55 );
+	$excerpt_more   = apply_filters( 'excerpt_more', ' [&hellip;]' );
+	$text = wp_trim_words( $extended['main'], $excerpt_length, $excerpt_more );
+
+	echo wp_kses_post( $text );
+	return;
+}
+
 $message = __( 'Viewing is restricted.', 'snow-monkey-member-post' );
 
 /**

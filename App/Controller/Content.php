@@ -14,7 +14,6 @@ class Content {
 
 	public function __construct() {
 		add_filter( 'the_content', [ $this, '_restrict_content' ] );
-		add_filter( 'the_excerpt', [ $this, '_restrict_excerpt' ] );
 	}
 
 	/**
@@ -41,29 +40,6 @@ class Content {
 		} else {
 			View::render( 'content/allowed/index', $args );
 		}
-		return ob_get_clean();
-	}
-
-	/**
-	 * Restrict excerp
-	 *
-	 * @param string $content
-	 * @return string
-	 */
-	public function _restrict_excerpt( $content ) {
-		$post = get_post();
-
-		if ( ! $this->_is_restricted( $post ) ) {
-			return $content;
-		}
-
-		$args = [
-			'post'    => $post,
-			'content' => $content,
-		];
-
-		ob_start();
-		View::render( 'excerpt/index', $args );
 		return ob_get_clean();
 	}
 
