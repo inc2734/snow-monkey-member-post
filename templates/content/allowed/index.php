@@ -24,6 +24,6 @@ $message = __( 'From here on, it is content for members only.', 'snow-monkey-mem
  */
 $message = apply_filters( 'snow_monkey_member_post_allowed_content_message', $message );
 
-View::render( 'content/_allow-message', [ 'message' => $message ] );
+View::render( 'content/allowed/message', [ 'message' => $message ] );
 
 echo wp_kses_post( $extended['extended'] );

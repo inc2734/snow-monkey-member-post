@@ -29,4 +29,4 @@ $message .= sprintf(
  */
 $message = apply_filters( 'snow_monkey_member_post_restricted_content_message', $message );
 
-View::render( 'content/_disallow-message', [ 'message' => $message ] );
+View::render( 'content/disallowed/message', [ 'message' => $message ] );

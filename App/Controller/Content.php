@@ -37,9 +37,9 @@ class Content {
 
 		ob_start();
 		if ( $this->_is_restricted( $post ) ) {
-			View::render( 'content/disallow', $args );
+			View::render( 'content/disallowed/index', $args );
 		} else {
-			View::render( 'content/allow', $args );
+			View::render( 'content/allowed/index', $args );
 		}
 		return ob_get_clean();
 	}
@@ -63,7 +63,7 @@ class Content {
 		];
 
 		ob_start();
-		View::render( 'excerpt/excerpt', $args );
+		View::render( 'excerpt/index', $args );
 		return ob_get_clean();
 	}
 
