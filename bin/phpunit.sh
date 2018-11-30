@@ -1,10 +1,14 @@
 #!/usr/bin/env bash
 
-if [ -e /tmp/wordpress-tests-lib ]; then
+TMPDIR=${TMPDIR-/tmp}
+TMPDIR=$(echo $TMPDIR | sed -e "s/\/$//")
+WP_TESTS_DIR=${WP_TESTS_DIR-$TMPDIR/wordpress-tests-lib}
 
-  themedir=$(pwd)
+if [ -e ${WP_TESTS_DIR} ]; then
 
-  cd ${themedir};
+  dir=$(pwd)
+
+  cd ${dir};
   vendor/bin/phpunit
   exit 0
 fi
