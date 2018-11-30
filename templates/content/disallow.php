@@ -21,7 +21,7 @@ if ( ! empty( $extended['extended'] ) ) {
 	);
 
 	echo wp_kses_post(
-		apply_filters( 'snow_monkey_member_post_restricted_content', $content )
+		apply_filters( 'snow_monkey_member_post_restricted_content_message', $content )
 	);
 	?>
 </div>

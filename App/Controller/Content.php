@@ -26,20 +26,21 @@ class Content {
 	public function _restrict_content( $content ) {
 		$post = get_post();
 
-		if ( ! $this->_is_restricted( $post ) ) {
+		if ( ! $this->_has_restriction_meta( $post ) ) {
 			return $content;
 		}
 
+		$args = [
+			'post'    => $post,
+			'content' => $content,
+		];
+
 		ob_start();
-
-		View::render(
-			'content',
-			[
-				'post'    => $post,
-				'content' => $content,
-			]
-		);
-
+		if ( $this->_is_restricted( $post ) ) {
+			View::render( 'content/disallow', $args );
+		} else {
+			View::render( 'content/allow', $args );
+		}
 		return ob_get_clean();
 	}
 
@@ -56,33 +57,48 @@ class Content {
 			return $content;
 		}
 
+		$args = [
+			'post'    => $post,
+			'content' => $content,
+		];
+
 		ob_start();
-
-		View::render(
-			'excerpt',
-			[
-				'post'    => $post,
-				'excerpt' => $content,
-			]
-		);
-
+		View::render( 'excerpt/excerpt', $args );
 		return ob_get_clean();
 	}
 
 	/**
 	 * Return true when the post is restricted
 	 *
-	 * @param WP_Post $_post
+	 * @param WP_Post $post
 	 * @return boolean
 	 */
-	protected function _is_restricted( $_post ) {
+	protected function _is_restricted( $post ) {
 		$return = true;
-		$restriction = (int) get_post_meta( $_post->ID, Config::get( 'restriction-key' ), true );
+		$has_restriction_meta = $this->_has_restriction_meta( $post );
 
-		if ( ! $_post || is_user_logged_in() || 1 !== $restriction ) {
+		if ( ! $post || ! $has_restriction_meta ) {
+			return false;
+		}
+
+		if ( is_user_logged_in() ) {
 			$return = false;
 		}
 
-		return apply_filters( 'snow_monkey_member_post_is_restricted', $return, $_post );
+		return apply_filters( 'snow_monkey_member_post_is_restricted', $return, $has_restriction_meta, $post );
+	}
+
+	/**
+	 * Return true when the post have restriction meta
+	 *
+	 * @param WP_Post $post
+	 * @return boolean
+	 */
+	protected function _has_restriction_meta( $post ) {
+		if ( ! $post ) {
+			return false;
+		}
+
+		return (bool) get_post_meta( $post->ID, Config::get( 'restriction-key' ), true );
 	}
 }
