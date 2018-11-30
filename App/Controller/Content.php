@@ -85,6 +85,13 @@ class Content {
 			$return = false;
 		}
 
+		/**
+		 * You can customize whether the content is restricted or not.
+		 *
+		 * @param boolean $return
+		 * @param boolean $has_restriction_meta
+		 * @param WP_Post $post
+		 */
 		return apply_filters( 'snow_monkey_member_post_is_restricted', $return, $has_restriction_meta, $post );
 	}
 

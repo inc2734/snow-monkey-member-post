@@ -28,8 +28,13 @@ class Post {
 	 * @return void
 	 */
 	public function _add_meta_boxes( $post_type ) {
-		$active_post_types = [ 'post' ];
-		$active_post_types = apply_filters( 'snow_monkey_member_post_active_post_types', $active_post_types );
+		/**
+		 * You can customize the type of post that you can restrict.
+		 *
+		 * @param array active_post_types
+		 * @return array
+		 */
+		$active_post_types = apply_filters( 'snow_monkey_member_post_active_post_types', [ 'post' ] );
 
 		if ( ! in_array( $post_type, $active_post_types ) ) {
 			return;

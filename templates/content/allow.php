@@ -5,20 +5,25 @@
  * @license GPL-2.0+
  */
 
+use Snow_Monkey\Plugin\SnowMonkeyMemberPost\App\View;
+
 $extended = get_extended( $post->post_content );
 echo wp_kses_post( $extended['main'] );
-?>
 
-<?php if ( ! empty( $extended['extended'] ) ) : ?>
-	<div class="wpac-alert wpac-alert--success">
-		<?php
-		$content = __( 'From here on, it is content for members only.', 'snow-monkey-member-post' );
+if ( empty( $extended['extended'] ) ) {
+	return;
+}
 
-		echo wp_kses_post(
-			apply_filters( 'snow_monkey_member_post_allowed_content_message', $content )
-		);
-		?>
-	</div>
+$message = __( 'From here on, it is content for members only.', 'snow-monkey-member-post' );
 
-	<?php echo wp_kses_post( $extended['extended'] ); ?>
-<?php endif; ?>
+/**
+ * You can customize the message displayed in the permitted content.
+ *
+ * @param string $message
+ * @return string
+ */
+$message = apply_filters( 'snow_monkey_member_post_allowed_content_message', $message );
+
+View::render( 'content/_allow-message', [ 'message' => $message ] );
+
+echo wp_kses_post( $extended['extended'] );
