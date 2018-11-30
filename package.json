@@ -2,7 +2,7 @@
   "author": "inc2734",
   "license": "GPL-2.0+",
   "devDependencies": {
-    "rimraf": "^2.6.2",
+    "rimraf": "^2.6.2"
   },
   "scripts": {
     "clean:zip": "rimraf snow-monkey-member-post.zip",
