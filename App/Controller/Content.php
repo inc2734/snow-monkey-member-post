@@ -24,12 +24,22 @@ class Content {
 	 * @return string
 	 */
 	public function _restrict_content( $content ) {
-		if ( ! $this->_is_restricted( get_post() ) ) {
+		$post = get_post();
+
+		if ( ! $this->_is_restricted( $post ) ) {
 			return $content;
 		}
 
 		ob_start();
-		View::render( 'content' );
+
+		View::render(
+			'content',
+			[
+				'post'    => $post,
+				'content' => $content,
+			]
+		);
+
 		return ob_get_clean();
 	}
 
@@ -40,12 +50,22 @@ class Content {
 	 * @return string
 	 */
 	public function _restrict_excerpt( $content ) {
-		if ( ! $this->_is_restricted( get_post() ) ) {
+		$post = get_post();
+
+		if ( ! $this->_is_restricted( $post ) ) {
 			return $content;
 		}
 
 		ob_start();
-		View::render( 'excerpt' );
+
+		View::render(
+			'excerpt',
+			[
+				'post'    => $post,
+				'excerpt' => $content,
+			]
+		);
+
 		return ob_get_clean();
 	}
 

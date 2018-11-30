@@ -4,6 +4,11 @@
  * @author inc2734
  * @license GPL-2.0+
  */
+
+$extended = get_extended( $post->post_content );
+if ( ! empty( $extended['extended'] ) ) {
+	echo wp_kses_post( $extended['main'] );
+}
 ?>
 
 <div class="wpac-alert">

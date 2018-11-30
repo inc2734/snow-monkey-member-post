@@ -15,12 +15,16 @@ class View {
 	 * @param string $slug
 	 * @return void
 	 */
-	public static function render( $slug ) {
+	public static function render( $slug, $args = [] ) {
 		$template_path = SNOW_MONKEY_MEMBER_POST_PATH . '/templates/' . $slug . '.php';
 
 		if ( ! file_exists( $template_path ) ) {
 			return;
 		}
+
+		// @codingStandardsIgnoreStart
+		extract( $args );
+		// @codingStandardsIgnoreEnd
 
 		include( $template_path );
 	}
