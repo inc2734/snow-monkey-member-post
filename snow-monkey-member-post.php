@@ -11,6 +11,9 @@
 
 namespace Snow_Monkey\Plugin\SnowMonkeyMemberPost;
 
+define( 'SNOW_MONKEY_MEMBER_POST_URL', plugin_dir_url( __FILE__ ) );
+define( 'SNOW_MONKEY_MEMBER_POST_PATH', plugin_dir_path( __FILE__ ) );
+
 class Bootstrap {
 
 	public function __construct() {
@@ -21,21 +24,19 @@ class Bootstrap {
 	public function _bootstrap() {
 		load_plugin_textdomain( 'snow-monkey-member-post', false, basename( __DIR__ ) . '/languages' );
 
-		add_action( 'wp_enqueue_scripts', [ $this, '_wp_enqueue_scripts' ], 9 );
-	}
+		$theme = wp_get_theme();
+		if ( 'snow-monkey' !== $theme->template && 'snow-monkey/resources' !== $theme->template ) {
+			return;
+		}
 
-	/**
-	 * Enqueue assets
-	 *
-	 * @return void
-	 */
-	public function _wp_enqueue_scripts() {
+		new App\Controller\Post();
+		new App\Controller\Content();
 	}
 
 	/**
 	 * Activate auto update using GitHub
 	 *
-	 * @return [void]
+	 * @return void
 	 */
 	public function _activate_autoupdate() {
 		new \Inc2734\WP_GitHub_Plugin_Updater\GitHub_Plugin_Updater(
