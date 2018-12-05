@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Snow Monkey Member Post\n"
-"POT-Creation-Date: 2018-12-05 11:33+0900\n"
-"PO-Revision-Date: 2018-12-05 11:33+0900\n"
+"POT-Creation-Date: 2018-12-05 12:02+0900\n"
+"PO-Revision-Date: 2018-12-05 12:02+0900\n"
 "Last-Translator: inc2734 <inc@2inc.org>\n"
 "Language-Team: inc2734 <inc@2inc.org>\n"
 "Language: ja_JP\n"
@@ -63,6 +63,10 @@ msgstr "ログイン状態を保存する"
 #: templates/shortcode/register-form/index.php:42
 msgid "Lost your password?"
 msgstr "パスワードをお忘れですか ?"
+
+#: templates/shortcode/login-form/loggedin.php:10
+msgid "You are logged in."
+msgstr "ログインしています。"
 
 #: templates/shortcode/register-form/index.php:14
 msgid "Username"

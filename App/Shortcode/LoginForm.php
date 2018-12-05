@@ -24,7 +24,9 @@ class LoginForm {
 	 */
 	public function _view( $atts ) {
 		if ( is_user_logged_in() ) {
-			return;
+			ob_start();
+			View::render( 'shortcode/login-form/loggedin' );
+			return ob_get_clean();
 		}
 
 		$atts = shortcode_atts(
