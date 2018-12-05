@@ -29,9 +29,13 @@ class Bootstrap {
 			return;
 		}
 
+		new App\Setup\Assets();
+
 		new App\Controller\Post();
 		new App\Controller\Content();
 		new App\Controller\Excerpt();
+
+		new App\Shortcode\LoginForm();
 	}
 
 	/**

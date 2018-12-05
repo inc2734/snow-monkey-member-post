@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Snow Monkey Member Post\n"
-"POT-Creation-Date: 2018-11-30 12:33+0900\n"
-"PO-Revision-Date: 2018-12-05 09:59+0900\n"
+"POT-Creation-Date: 2018-12-05 10:39+0900\n"
+"PO-Revision-Date: 2018-12-05 10:40+0900\n"
 "Last-Translator: inc2734 <inc@2inc.org>\n"
 "Language-Team: inc2734 <inc@2inc.org>\n"
 "Language: ja_JP\n"
@@ -30,11 +30,11 @@ msgstr "Snow Monkey Member Post"
 msgid "From here on, it is content for members only."
 msgstr "ここから先はメンバー限定コンテンツです。"
 
-#: templates/content/disallowed/index.php:17 templates/excerpt/index.php:8
+#: templates/content/disallowed/index.php:15 templates/excerpt/index.php:21
 msgid "Viewing is restricted."
 msgstr "表示は制限されています。"
 
-#: templates/content/disallowed/index.php:19
+#: templates/content/disallowed/index.php:17
 #, php-format
 msgid "Please %1$slogin%2$s to view this page."
 msgstr "このページを表示するには%1$sログイン%2$sしてください。"
@@ -42,6 +42,26 @@ msgstr "このページを表示するには%1$sログイン%2$sしてくださ�
 #: templates/meta-box.php:31
 msgid "Allow login users to display this article"
 msgstr "ログインユーザーにこの記事を表示させる"
+
+#: templates/shortcode/login/index.php:14
+msgid "Username or Email Address"
+msgstr "ユーザー名またはメールアドレス"
+
+#: templates/shortcode/login/index.php:22
+msgid "Password"
+msgstr "パスワード"
+
+#: templates/shortcode/login/index.php:31
+msgid "Log In"
+msgstr "ログイン"
+
+#: templates/shortcode/login/index.php:40
+msgid "Remember Me"
+msgstr "ログイン状態を保存する"
+
+#: templates/shortcode/login/index.php:45
+msgid "Lost your password?"
+msgstr "パスワードをお忘れですか ?"
 
 #. Description of the plugin/theme
 msgid ""

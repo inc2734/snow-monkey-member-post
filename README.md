@@ -1,5 +1,15 @@
 # Snow Monkey Member Post
 
+## Shortcode
+
+### snow_monkey_member_post_login_form
+
+Display the login form.
+
+```
+[snow_monkey_member_post_login_form redirect_to="https://example.com/login"]
+```
+
 ## Filter hooks
 
 ### snow_monkey_member_post_active_post_types
