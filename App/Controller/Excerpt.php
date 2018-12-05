@@ -13,7 +13,7 @@ use Snow_Monkey\Plugin\SnowMonkeyMemberPost\App\View;
 class Excerpt extends Content {
 
 	public function __construct() {
-		add_filter( 'the_excerpt', [ $this, '_restrict_excerpt' ] );
+		add_filter( 'the_excerpt', [ $this, '_restrict_excerpt' ], 9 );
 	}
 
 	/**

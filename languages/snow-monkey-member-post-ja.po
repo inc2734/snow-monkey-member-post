@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Snow Monkey Member Post\n"
 "POT-Creation-Date: 2018-11-30 12:33+0900\n"
-"PO-Revision-Date: 2018-11-30 12:34+0900\n"
+"PO-Revision-Date: 2018-12-05 09:59+0900\n"
 "Last-Translator: inc2734 <inc@2inc.org>\n"
 "Language-Team: inc2734 <inc@2inc.org>\n"
 "Language: ja_JP\n"
@@ -28,7 +28,7 @@ msgstr "Snow Monkey Member Post"
 
 #: templates/content/allowed/index.php:17
 msgid "From here on, it is content for members only."
-msgstr "ここ先はメンバー限定コンテンツです。"
+msgstr "ここから先はメンバー限定コンテンツです。"
 
 #: templates/content/disallowed/index.php:17 templates/excerpt/index.php:8
 msgid "Viewing is restricted."
