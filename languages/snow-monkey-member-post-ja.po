@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Snow Monkey Member Post\n"
-"POT-Creation-Date: 2018-12-05 11:18+0900\n"
-"PO-Revision-Date: 2018-12-05 11:19+0900\n"
+"POT-Creation-Date: 2018-12-05 11:33+0900\n"
+"PO-Revision-Date: 2018-12-05 11:33+0900\n"
 "Last-Translator: inc2734 <inc@2inc.org>\n"
 "Language-Team: inc2734 <inc@2inc.org>\n"
 "Language: ja_JP\n"
@@ -83,6 +83,10 @@ msgstr "登録確認のメールが送信されます。"
 #: templates/shortcode/register-form/registered.php:10
 msgid "Registration complete. Please check your email."
 msgstr "登録が完了しました。メールを確認してください。"
+
+#: templates/shortcode/register-form/restricted.php:10
+msgid "Currently, user registration is restricted."
+msgstr "現在、ユーザー登録は制限されています。"
 
 #. Description of the plugin/theme
 msgid ""

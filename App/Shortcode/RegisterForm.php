@@ -28,7 +28,9 @@ class RegisterForm {
 		}
 
 		if ( ! get_option( 'users_can_register' ) ) {
-			return;
+			ob_start();
+			View::render( 'shortcode/register-form/restricted' );
+			return ob_get_clean();
 		}
 
 		$atts = shortcode_atts(
@@ -49,7 +51,7 @@ class RegisterForm {
 
 		ob_start();
 		if ( 'registered' === filter_input( INPUT_GET, 'checkemail' ) ) {
-			View::render( 'shortcode/register-form/registered', $atts );
+			View::render( 'shortcode/register-form/registered' );
 		} else {
 			View::render( 'shortcode/register-form/index', $atts );
 		}

@@ -7,7 +7,21 @@
 Display the login form.
 
 ```
-[snow_monkey_member_post_login_form redirect_to="https://example.com/login"]
+/**
+ * @param  string  redirect_to  You can specify the URL to redirect when logging in.
+ */
+[snow_monkey_member_post_login_form redirect_to="(Optional)"]
+```
+
+### snow_monkey_member_post_register_form
+
+Display the register form.
+
+```
+/**
+ * @param  string  redirect_to  You can specify the URL to redirect when registered.
+ */
+[snow_monkey_member_post_register_form redirect_to="(Optional)"]
 ```
 
 ## Filter hooks
