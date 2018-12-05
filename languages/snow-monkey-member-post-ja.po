@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Snow Monkey Member Post\n"
-"POT-Creation-Date: 2018-12-05 10:39+0900\n"
-"PO-Revision-Date: 2018-12-05 10:40+0900\n"
+"POT-Creation-Date: 2018-12-05 11:18+0900\n"
+"PO-Revision-Date: 2018-12-05 11:19+0900\n"
 "Last-Translator: inc2734 <inc@2inc.org>\n"
 "Language-Team: inc2734 <inc@2inc.org>\n"
 "Language: ja_JP\n"
@@ -43,25 +43,46 @@ msgstr "このページを表示するには%1$sログイン%2$sしてくださ�
 msgid "Allow login users to display this article"
 msgstr "ログインユーザーにこの記事を表示させる"
 
-#: templates/shortcode/login/index.php:14
+#: templates/shortcode/login-form/index.php:14
 msgid "Username or Email Address"
 msgstr "ユーザー名またはメールアドレス"
 
-#: templates/shortcode/login/index.php:22
+#: templates/shortcode/login-form/index.php:22
 msgid "Password"
 msgstr "パスワード"
 
-#: templates/shortcode/login/index.php:31
+#: templates/shortcode/login-form/index.php:31
 msgid "Log In"
 msgstr "ログイン"
 
-#: templates/shortcode/login/index.php:40
+#: templates/shortcode/login-form/index.php:40
 msgid "Remember Me"
 msgstr "ログイン状態を保存する"
 
-#: templates/shortcode/login/index.php:45
+#: templates/shortcode/login-form/index.php:45
+#: templates/shortcode/register-form/index.php:42
 msgid "Lost your password?"
 msgstr "パスワードをお忘れですか ?"
+
+#: templates/shortcode/register-form/index.php:14
+msgid "Username"
+msgstr "ユーザー名"
+
+#: templates/shortcode/register-form/index.php:22
+msgid "Email"
+msgstr "メールアドレス"
+
+#: templates/shortcode/register-form/index.php:31
+msgid "Register"
+msgstr "登録"
+
+#: templates/shortcode/register-form/index.php:38
+msgid "Registration confirmation will be emailed to you."
+msgstr "登録確認のメールが送信されます。"
+
+#: templates/shortcode/register-form/registered.php:10
+msgid "Registration complete. Please check your email."
+msgstr "登録が完了しました。メールを確認してください。"
 
 #. Description of the plugin/theme
 msgid ""

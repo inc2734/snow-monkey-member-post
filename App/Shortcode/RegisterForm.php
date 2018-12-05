@@ -9,10 +9,10 @@ namespace Snow_Monkey\Plugin\SnowMonkeyMemberPost\App\Shortcode;
 
 use Snow_Monkey\Plugin\SnowMonkeyMemberPost\App\View;
 
-class LoginForm {
+class RegisterForm {
 
 	public function __construct() {
-		add_shortcode( 'snow_monkey_member_post_login_form', [ $this, '_view' ] );
+		add_shortcode( 'snow_monkey_member_post_register_form', [ $this, '_view' ] );
 	}
 
 	/**
@@ -27,6 +27,10 @@ class LoginForm {
 			return;
 		}
 
+		if ( ! get_option( 'users_can_register' ) ) {
+			return;
+		}
+
 		$atts = shortcode_atts(
 			[
 				'redirect_to' => $this->_get_current_url(),
@@ -34,8 +38,21 @@ class LoginForm {
 			$atts
 		);
 
+		$redirect_to = $atts['redirect_to'];
+		$redirect_to = explode( '?', $redirect_to );
+		$query_args  = [];
+		if ( ! empty( $_GET ) ) {
+			$query_args = wp_unslash( $_GET );
+		}
+		$query_args['checkemail'] = 'registered';
+		$atts['redirect_to'] = $redirect_to[0] . '?' . http_build_query( $query_args, '', '&amp;' );
+
 		ob_start();
-		View::render( 'shortcode/login-form/index', $atts );
+		if ( 'registered' === filter_input( INPUT_GET, 'checkemail' ) ) {
+			View::render( 'shortcode/register-form/registered', $atts );
+		} else {
+			View::render( 'shortcode/register-form/index', $atts );
+		}
 		return ob_get_clean();
 	}
 
