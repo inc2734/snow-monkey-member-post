@@ -33,6 +33,7 @@ before_script:
 script:
 - composer test
 before_deploy:
+- npm run build
 - npm run zip
 - ls -la snow-monkey-member-post.zip
 - export RELEASE_FILE=$(ls snow-monkey-member-post.zip)
