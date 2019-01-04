@@ -5,7 +5,7 @@
  * @license GPL-2.0+
  */
 
-$login = filter_input( INPUT_GET, 'register' );
+$login = filter_input( INPUT_GET, 'register_error_codes' );
 if ( ! $login ) {
 	return;
 }

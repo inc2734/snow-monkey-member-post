@@ -72,7 +72,7 @@ class LoginForm {
 		}
 
 		$error_codes = implode( ',', $user->get_error_codes() );
-		$redirect_to = add_query_arg( 'login', $error_codes, $redirect_to );
+		$redirect_to = add_query_arg( 'login_error_codes', $error_codes, $redirect_to );
 
 		wp_safe_redirect( $redirect_to );
 	}
@@ -84,6 +84,8 @@ class LoginForm {
 	 */
 	protected function _get_current_url() {
 		$path = filter_input( INPUT_SERVER, 'REQUEST_URI' );
+		$path = remove_query_arg( 'login_error_codes', $path );
+		$path = remove_query_arg( 'register_error_codes', $path );
 		return home_url( $path );
 	}
 }

@@ -42,15 +42,7 @@ class RegisterForm {
 			$atts
 		);
 
-		$redirect_to = $atts['redirect_to'];
-		$redirect_to = explode( '?', $redirect_to );
-		$query_args  = [];
-		if ( ! empty( $_GET ) ) {
-			$query_args = wp_unslash( $_GET );
-		}
-
-		$query_args['checkemail'] = 'registered';
-		$atts['redirect_to'] = $redirect_to[0] . '?' . http_build_query( $query_args, '', '&amp;' );
+		$atts['redirect_to'] = add_query_arg( 'checkemail', 'registered', $atts['redirect_to'] );
 
 		ob_start();
 		if ( 'registered' === filter_input( INPUT_GET, 'checkemail' ) ) {
@@ -90,7 +82,7 @@ class RegisterForm {
 			return $errors;
 		}
 
-		$redirect_to = add_query_arg( 'register', $error_codes, $redirect_to );
+		$redirect_to = add_query_arg( 'register_error_codes', $error_codes, $redirect_to );
 		$redirect_to = remove_query_arg( 'checkemail', $redirect_to );
 
 		wp_safe_redirect( $redirect_to );
@@ -103,6 +95,8 @@ class RegisterForm {
 	 */
 	protected function _get_current_url() {
 		$path = filter_input( INPUT_SERVER, 'REQUEST_URI' );
+		$path = remove_query_arg( 'login_error_codes', $path );
+		$path = remove_query_arg( 'register_error_codes', $path );
 		return home_url( $path );
 	}
 }
