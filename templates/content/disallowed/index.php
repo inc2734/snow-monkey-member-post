@@ -13,11 +13,7 @@ if ( ! empty( $extended['extended'] ) ) {
 }
 
 $message  = __( 'Viewing is restricted.', 'snow-monkey-member-post' );
-$message .= sprintf(
-	__( 'Please %1$slogin%2$s to view this page.', 'snow-monkey-member-post' ),
-	'<a href="' . wp_login_url() . '">',
-	'</a>'
-);
+$message .= __( 'Please login to view this page.', 'snow-monkey-member-post' );
 
 /**
  * You can customize the messages that appear on unauthorized content.

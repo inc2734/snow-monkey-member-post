@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Snow Monkey Member Post\n"
-"POT-Creation-Date: 2018-12-05 12:02+0900\n"
-"PO-Revision-Date: 2018-12-05 12:02+0900\n"
+"POT-Creation-Date: 2019-01-04 12:39+0900\n"
+"PO-Revision-Date: 2019-01-04 12:40+0900\n"
 "Last-Translator: inc2734 <inc@2inc.org>\n"
 "Language-Team: inc2734 <inc@2inc.org>\n"
 "Language: ja_JP\n"
@@ -34,33 +34,36 @@ msgstr "ここから先はメンバー限定コンテンツです。"
 msgid "Viewing is restricted."
 msgstr "表示は制限されています。"
 
-#: templates/content/disallowed/index.php:17
-#, php-format
-msgid "Please %1$slogin%2$s to view this page."
-msgstr "このページを表示するには%1$sログイン%2$sしてください。"
+#: templates/content/disallowed/index.php:16
+msgid "Please login to view this page."
+msgstr "このページを表示するにはログインしてください。"
 
 #: templates/meta-box.php:31
 msgid "Allow login users to display this article"
 msgstr "ログインユーザーにこの記事を表示させる"
 
-#: templates/shortcode/login-form/index.php:14
+#: templates/shortcode/login-form/error.php:19
+msgid "The username or password is incorrect."
+msgstr "ユーザー名、またはパスワードが正しくありません。"
+
+#: templates/shortcode/login-form/index.php:19
 msgid "Username or Email Address"
 msgstr "ユーザー名またはメールアドレス"
 
-#: templates/shortcode/login-form/index.php:22
+#: templates/shortcode/login-form/index.php:27
 msgid "Password"
 msgstr "パスワード"
 
-#: templates/shortcode/login-form/index.php:31
+#: templates/shortcode/login-form/index.php:36
 msgid "Log In"
 msgstr "ログイン"
 
-#: templates/shortcode/login-form/index.php:40
+#: templates/shortcode/login-form/index.php:45
 msgid "Remember Me"
 msgstr "ログイン状態を保存する"
 
-#: templates/shortcode/login-form/index.php:45
-#: templates/shortcode/register-form/index.php:42
+#: templates/shortcode/login-form/index.php:50
+#: templates/shortcode/register-form/index.php:47
 msgid "Lost your password?"
 msgstr "パスワードをお忘れですか ?"
 
@@ -68,19 +71,33 @@ msgstr "パスワードをお忘れですか ?"
 msgid "You are logged in."
 msgstr "ログインしています。"
 
-#: templates/shortcode/register-form/index.php:14
+#: templates/shortcode/register-form/error.php:22
+msgid "Sorry, that username already exists!"
+msgstr "申し訳ありません、そのユーザーネームは既に使用されています！"
+
+#: templates/shortcode/register-form/error.php:26
+msgid "This email is already registered, please choose another one."
+msgstr ""
+"このメールアドレスはすでに登録されています。別のメールアドレスを入力してく"
+"ださい。"
+
+#: templates/shortcode/register-form/error.php:30
+msgid "The username or email address is incorrect."
+msgstr "ユーザー名またはメールアドレスが正しくありません。"
+
+#: templates/shortcode/register-form/index.php:19
 msgid "Username"
 msgstr "ユーザー名"
 
-#: templates/shortcode/register-form/index.php:22
+#: templates/shortcode/register-form/index.php:27
 msgid "Email"
 msgstr "メールアドレス"
 
-#: templates/shortcode/register-form/index.php:31
+#: templates/shortcode/register-form/index.php:36
 msgid "Register"
 msgstr "登録"
 
-#: templates/shortcode/register-form/index.php:38
+#: templates/shortcode/register-form/index.php:43
 msgid "Registration confirmation will be emailed to you."
 msgstr "登録確認のメールが送信されます。"
 

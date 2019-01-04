@@ -4,7 +4,12 @@
  * @author inc2734
  * @license GPL-2.0+
  */
+
+use Snow_Monkey\Plugin\SnowMonkeyMemberPost\App\Config;
+use Snow_Monkey\Plugin\SnowMonkeyMemberPost\App\View;
 ?>
+
+<?php View::render( 'shortcode/register-form/error' ); ?>
 
 <form name="registerform" class="smmp-register-form" action="<?php echo esc_url( site_url( 'wp-login.php?action=register', 'login_post' ) ); ?>" method="post">
 	<div class="c-row c-row--margin-s">
@@ -45,4 +50,10 @@
 			</ul>
 		</div>
 	</div>
+
+	<?php
+	$nonce_key = Config::get( 'register-form-nonce-key' );
+	$nonce     = wp_create_nonce( Config::get( 'register-form-nonce-key' ) );
+	?>
+	<input type="hidden" name="<?php echo esc_attr( $nonce_key ); ?>" value="<?php echo esc_attr( $nonce ); ?>">
 </form>
