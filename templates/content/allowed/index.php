@@ -8,7 +8,7 @@
 use Snow_Monkey\Plugin\SnowMonkeyMemberPost\App\View;
 
 $extended = View::get_extended( $content );
-echo wp_kses_post( $extended['main'] );
+echo $extended['main']; // XSS ok.
 
 if ( empty( $extended['extended'] ) ) {
 	return;
@@ -26,4 +26,4 @@ $message = apply_filters( 'snow_monkey_member_post_allowed_content_message', $me
 
 View::render( 'content/allowed/message', [ 'message' => $message ] );
 
-echo wp_kses_post( $extended['extended'] );
+echo $extended['extended']; // XSS ok.

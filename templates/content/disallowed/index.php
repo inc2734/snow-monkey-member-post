@@ -9,7 +9,7 @@ use Snow_Monkey\Plugin\SnowMonkeyMemberPost\App\View;
 
 $extended = View::get_extended( $content );
 if ( ! empty( $extended['extended'] ) ) {
-	echo wp_kses_post( $extended['main'] );
+	echo $extended['main']; // XSS ok.
 }
 
 $message  = __( 'Viewing is restricted.', 'snow-monkey-member-post' );
