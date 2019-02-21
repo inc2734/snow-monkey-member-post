@@ -42,7 +42,7 @@ class ContentTest extends WP_UnitTestCase {
 	 * @test
 	 */
 	public function restricted_has_more() {
-		$post = $this->_create_post( [ 'post_content' => 'before<!--more-->after' ] );
+		$post = $this->_create_post( [ 'post_content' => 'before<span id="more-1"><\/span>after' ] );
 		update_post_meta( $post->ID, Config::get( 'restriction-key' ), 1 );
 		$content = $this->_get_the_content( $post );
 		$this->assertNotEquals( 'content', trim( strip_tags( $content ) ) );

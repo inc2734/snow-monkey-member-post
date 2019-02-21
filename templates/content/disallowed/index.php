@@ -7,7 +7,7 @@
 
 use Snow_Monkey\Plugin\SnowMonkeyMemberPost\App\View;
 
-$extended = get_extended( $post->post_content );
+$extended = View::get_extended( $content );
 if ( ! empty( $extended['extended'] ) ) {
 	echo wp_kses_post( $extended['main'] );
 }

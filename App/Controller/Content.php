@@ -40,6 +40,7 @@ class Content {
 		} else {
 			View::render( 'content/allowed/index', $args );
 		}
+
 		return ob_get_clean();
 	}
 

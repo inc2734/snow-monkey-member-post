@@ -9,7 +9,7 @@ if [ -e ${WP_TESTS_DIR} ]; then
   dir=$(pwd)
 
   cd ${dir};
-  vendor/bin/phpunit
+  vendor/bin/phpunit --configuration= ${dir}/phpunit.xml.dist
   exit 0
 fi
 

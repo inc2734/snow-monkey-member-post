@@ -37,4 +37,32 @@ class View {
 
 		include( $template_path );
 	}
+
+	/**
+	 * get_extended() for filtered content
+	 *
+	 * @see https://developer.wordpress.org/reference/functions/get_extended/
+	 * @param string $content
+	 * @return array
+	 */
+	public static function get_extended( $content ) {
+		if ( preg_match( '@<span id="more-(\d+)"><\/span>@', $content, $matches ) ) {
+			list( $main, $extended ) = explode( $matches[0], $content, 2 );
+			$more_text = $matches[1];
+		} else {
+			$main      = $content;
+			$extended  = '';
+			$more_text = '';
+		}
+
+		$main = preg_replace( '/^[\s]*(.*)[\s]*$/', '\\1', $main );
+		$extended = preg_replace( '/^[\s]*(.*)[\s]*$/', '\\1', $extended );
+		$more_text = preg_replace( '/^[\s]*(.*)[\s]*$/', '\\1', $more_text );
+
+		return [
+			'main'      => $main,
+			'extended'  => $extended,
+			'more_text' => $more_text,
+		];
+	}
 }
