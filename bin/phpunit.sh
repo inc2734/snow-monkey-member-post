@@ -4,12 +4,12 @@ TMPDIR=${TMPDIR-/tmp}
 TMPDIR=$(echo $TMPDIR | sed -e "s/\/$//")
 WP_TESTS_DIR=${WP_TESTS_DIR-$TMPDIR/wordpress-tests-lib}
 
-if [ -e ${WP_TESTS_DIR} ]; then
+if [ -e ${WP_TESTS_DIR} ] && [ -e ${WP_TESTS_DIR}/includes/functions.php ]; then
 
-  dir=$(pwd)
+  themedir=$(pwd)
 
-  cd ${dir};
-  vendor/bin/phpunit --configuration= ${dir}/phpunit.xml.dist
+  cd ${themedir};
+  vendor/bin/phpunit --configuration=${themedir}/phpunit.xml.dist
   exit 0
 fi
 

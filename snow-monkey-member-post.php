@@ -45,7 +45,7 @@ class Bootstrap {
 	 * @return void
 	 */
 	public function _activate_autoupdate() {
-		new \Inc2734\WP_GitHub_Plugin_Updater\GitHub_Plugin_Updater(
+		new \Inc2734\WP_GitHub_Plugin_Updater\Bootstrap(
 			plugin_basename( __FILE__ ),
 			'inc2734',
 			'snow-monkey-member-post'
