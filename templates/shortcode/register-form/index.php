@@ -42,11 +42,6 @@ use Snow_Monkey\Plugin\SnowMonkeyMemberPost\App\View;
 				<li class="smmp-login-form__nav__item">
 					<?php esc_html_e( 'Registration confirmation will be emailed to you.', 'snow-monkey-member-post' ); ?>
 				</li>
-				<li class="smmp-login-form__nav__item">
-					<a href="<?php echo esc_url( wp_lostpassword_url() ); ?>">
-						<?php esc_html_e( 'Lost your password?', 'snow-monkey-member-post' ); ?>
-					</a>
-				</li>
 			</ul>
 		</div>
 	</div>
