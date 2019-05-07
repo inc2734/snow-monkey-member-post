@@ -125,20 +125,44 @@ add_filter(
 );
 ```
 
-### snow_monkey_member_post_tepmlate_path
+### snow_monkey_member_post_view_hierarchy
 ```
 /**
- * You can customize the template to load.
+ * You can customize the template directory.
  *
- * @param string $template_path
+ * @param array $hierarchy
  * @param string $slug
+ * @param string $name
+ * @param array $vars
+ * @return array
+ */
+add_filter(
+  'snow_monkey_member_post_view_hierarchy',
+  function( $hierarchy, $slug, $name, $vars ) {
+    return $hierarchy;
+  },
+  10,
+  4
+);
+```
+
+### snow_monkey_member_post_view_render
+```
+/**
+ * You can customize the template html.
+ *
+ * @param array $html
+ * @param string $slug
+ * @param string $name
+ * @param array $vars
  * @return string
  */
 add_filter(
-  'snow_monkey_member_post_tepmlate_path',
-  function( $template_path, $slug ) {
-    return $template_path;
+  'snow_monkey_member_post_view_render',
+  function( $html, $slug, $name, $vars ) {
+    return $html;
   },
   10,
-  2
+  4
 );
+```
