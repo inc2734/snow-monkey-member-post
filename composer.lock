@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "227c010ffe73279d04594f3331b1ba5d",
+    "content-hash": "aaa41eacfe660dccbd1a687a89f7528e",
     "packages": [
         {
             "name": "erusev/parsedown",
@@ -96,6 +96,49 @@
             ],
             "description": "A library for WordPress that automatic plugin updater with GitHub API.",
             "time": "2019-03-20T05:35:45+00:00"
+        },
+        {
+            "name": "inc2734/wp-plugin-view-controller",
+            "version": "0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/inc2734/wp-plugin-view-controller.git",
+                "reference": "f4af9737a882cf058b44f9acfc9f6ce2a48df184"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/inc2734/wp-plugin-view-controller/zipball/f4af9737a882cf058b44f9acfc9f6ce2a48df184",
+                "reference": "f4af9737a882cf058b44f9acfc9f6ce2a48df184",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6"
+            },
+            "require-dev": {
+                "dealerdirect/phpcodesniffer-composer-installer": "^0.4.3",
+                "phpcompatibility/phpcompatibility-wp": "*",
+                "phpmd/phpmd": "2.*",
+                "phpunit/phpunit": "7.*",
+                "squizlabs/php_codesniffer": "*",
+                "wp-coding-standards/wpcs": "*"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Inc2734\\WP_Plugin_View_Controller\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Takashi Kitajima",
+                    "email": "inc@2inc.org"
+                }
+            ],
+            "time": "2019-05-07T06:34:24+00:00"
         }
     ],
     "packages-dev": [

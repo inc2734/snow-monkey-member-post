@@ -7,6 +7,8 @@
 
 namespace Snow_Monkey\Plugin\SnowMonkeyMemberPost\App;
 
+use Inc2734\WP_Plugin_View_Controller\Bootstrap;
+
 class View {
 
 	/**
@@ -16,26 +18,23 @@ class View {
 	 * @return void
 	 */
 	public static function render( $slug, $args = [] ) {
-		$template_path = SNOW_MONKEY_MEMBER_POST_PATH . '/templates/' . $slug . '.php';
+		$bootstrap = new Bootstrap(
+			[
+				'prefix' => 'snow_monkey_member_post_',
+				'path'   => SNOW_MONKEY_MEMBER_POST_PATH . '/templates/',
+			]
+		);
 
-		/**
-		 * You can customize the template to load.
-		 *
-		 * @param string $template_path
-		 * @param string $slug
-		 * @return string
-		 */
-		$template_path = apply_filters( 'snow_monkey_member_post_template_path', $template_path, $slug );
+		add_filter(
+			'snow_monkey_member_post_view_hierarchy',
+			function( $hierarchy ) use ( $slug ) {
+				$hierarchy[] = apply_filters( 'snow_monkey_member_post_template_path', current( $hierarchy ), $slug );
+				return $hierarchy;
+			},
+			9
+		);
 
-		if ( ! file_exists( $template_path ) ) {
-			return;
-		}
-
-		// @codingStandardsIgnoreStart
-		extract( $args );
-		// @codingStandardsIgnoreEnd
-
-		include( $template_path );
+		$bootstrap->render( $slug, null, $args );
 	}
 
 	/**
