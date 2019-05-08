@@ -7,9 +7,11 @@
 
 use Snow_Monkey\Plugin\SnowMonkeyMemberPost\App\Config;
 use Snow_Monkey\Plugin\SnowMonkeyMemberPost\App\View;
-?>
 
-<?php View::render( 'shortcode/register-form/error' ); ?>
+if ( filter_input( INPUT_GET, 'register_error_codes' ) && explode( ',', $login ) ) {
+	View::render( 'shortcode/register-form/error' );
+}
+?>
 
 <form name="registerform" class="smmp-register-form" action="<?php echo esc_url( site_url( 'wp-login.php?action=register', 'login_post' ) ); ?>" method="post">
 	<div class="c-row c-row--margin-s">

@@ -4,16 +4,6 @@
  * @author inc2734
  * @license GPL-2.0+
  */
-
-$login = filter_input( INPUT_GET, 'register_error_codes' );
-if ( ! $login ) {
-	return;
-}
-
-$error_codes = explode( ',', $login );
-if ( ! $error_codes ) {
-	return;
-}
 ?>
 <div class="wpac-alert wpac-alert--warning">
 	<?php

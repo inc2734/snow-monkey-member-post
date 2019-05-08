@@ -11,8 +11,8 @@
 
 namespace Snow_Monkey\Plugin\SnowMonkeyMemberPost;
 
-define( 'SNOW_MONKEY_MEMBER_POST_URL', plugin_dir_url( __FILE__ ) );
-define( 'SNOW_MONKEY_MEMBER_POST_PATH', plugin_dir_path( __FILE__ ) );
+define( 'SNOW_MONKEY_MEMBER_POST_URL', untrailingslashit( plugin_dir_url( __FILE__ ) ) );
+define( 'SNOW_MONKEY_MEMBER_POST_PATH', untrailingslashit( plugin_dir_path( __FILE__ ) ) );
 
 class Bootstrap {
 

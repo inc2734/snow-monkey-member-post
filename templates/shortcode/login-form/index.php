@@ -7,9 +7,11 @@
 
 use Snow_Monkey\Plugin\SnowMonkeyMemberPost\App\Config;
 use Snow_Monkey\Plugin\SnowMonkeyMemberPost\App\View;
-?>
 
-<?php View::render( 'shortcode/login-form/error' ); ?>
+if ( filter_input( INPUT_GET, 'login_error_codes' ) && explode( ',', $login ) ) {
+	View::render( 'shortcode/login-form/error' );
+}
+?>
 
 <form name="loginform" class="smmp-login-form" action="<?php echo esc_url( site_url( 'wp-login.php', 'login_post' ) ); ?>" method="post">
 	<div class="c-row c-row--margin-s">
