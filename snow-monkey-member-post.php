@@ -36,6 +36,7 @@ class Bootstrap {
 		new App\Controller\Excerpt();
 
 		new App\Shortcode\LoginForm();
+		new App\Shortcode\LogoutForm();
 		new App\Shortcode\RegisterForm();
 	}
 
