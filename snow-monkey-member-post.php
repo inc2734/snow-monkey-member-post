@@ -11,6 +11,8 @@
 
 namespace Snow_Monkey\Plugin\SnowMonkeyMemberPost;
 
+use Inc2734\WP_GitHub_Plugin_Updater\Bootstrap as Updater;
+
 define( 'SNOW_MONKEY_MEMBER_POST_URL', untrailingslashit( plugin_dir_url( __FILE__ ) ) );
 define( 'SNOW_MONKEY_MEMBER_POST_PATH', untrailingslashit( plugin_dir_path( __FILE__ ) ) );
 
@@ -45,7 +47,7 @@ class Bootstrap {
 	 * @return void
 	 */
 	public function _activate_autoupdate() {
-		new \Inc2734\WP_GitHub_Plugin_Updater\Bootstrap(
+		new Updater(
 			plugin_basename( __FILE__ ),
 			'inc2734',
 			'snow-monkey-member-post'

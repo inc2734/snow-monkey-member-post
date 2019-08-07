@@ -29,7 +29,7 @@ class View {
 			'snow_monkey_member_post_view_hierarchy',
 			function( $hierarchy ) use ( $slug ) {
 				$hierarchy[] = apply_filters( 'snow_monkey_member_post_template_path', current( $hierarchy ), $slug );
-				return $hierarchy;
+				return array_unique( $hierarchy );
 			},
 			9
 		);
