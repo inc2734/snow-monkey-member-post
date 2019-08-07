@@ -8,7 +8,6 @@
 namespace Snow_Monkey\Plugin\SnowMonkeyMemberPost\App\Controller;
 
 use Snow_Monkey\Plugin\SnowMonkeyMemberPost\App\Config;
-use Snow_Monkey\Plugin\SnowMonkeyMemberPost\App\View;
 
 class Edit {
 
@@ -17,14 +16,15 @@ class Edit {
 	}
 
 	/**
-	 * Add meta box
+	 * Add post status comment
 	 *
-	 * @param string $post_type
-	 * @return void
+	 * @param array $post_states
+	 * @param WP_Post $post
+	 * @return array
 	 */
 	public function _display_post_states( $post_states, $post ) {
 		if ( get_post_meta( $post->ID, Config::get( 'restriction-key' ), true ) ) {
-			$post_states[] = 'メンバー限定記事';
+			$post_states[] = esc_html__( 'Members only', 'snow-monkey-member-post' );
 		}
 		return $post_states;
 	}
