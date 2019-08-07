@@ -34,6 +34,7 @@ class Bootstrap {
 		new App\Setup\Assets();
 
 		new App\Controller\Post();
+		new App\Controller\Edit();
 		new App\Controller\Content();
 		new App\Controller\Excerpt();
 
