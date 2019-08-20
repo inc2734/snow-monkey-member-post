@@ -2,7 +2,7 @@
 /**
  * Plugin name: Snow Monkey Member Post
  * Description: It's a plugin that provides a function that allows only logged-in users to view articles.
- * Version: 1.3.1
+ * Version: 2.0.0
  *
  * @package snow-monkey-member-post
  * @author inc2734
