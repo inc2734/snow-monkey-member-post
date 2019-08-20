@@ -78,14 +78,23 @@ class RegisterForm {
 		}
 
 		$error_codes = implode( ',', $errors->get_error_codes() );
-		if ( ! $error_codes ) {
-			return $errors;
+
+		if ( empty( $error_codes ) ) {
+			wp_safe_redirect( $redirect_to );
+		}
+
+		$referer = $this->_get_http_referer();
+		if ( $referer ) {
+			$redirect_to = add_query_arg( 'register_error_codes', $error_codes, $referer );
+			$redirect_to = remove_query_arg( 'checkemail', $redirect_to );
+			wp_safe_redirect( $redirect_to );
 		}
 
 		$redirect_to = add_query_arg( 'register_error_codes', $error_codes, $redirect_to );
 		$redirect_to = remove_query_arg( 'checkemail', $redirect_to );
-
 		wp_safe_redirect( $redirect_to );
+
+		return $errors;
 	}
 
 	/**
@@ -98,5 +107,22 @@ class RegisterForm {
 		$path = remove_query_arg( 'login_error_codes', $path );
 		$path = remove_query_arg( 'register_error_codes', $path );
 		return home_url( $path );
+	}
+
+	/**
+	 * Return HTTP_REFERER
+	 *
+	 * @return string
+	 */
+	protected function _get_http_referer() {
+		$referer = null;
+
+		if ( isset( $_SERVER['HTTP_REFERER'] ) ) {
+			$referer = $_SERVER['HTTP_REFERER'];
+			$referer = remove_query_arg( 'login_error_codes', $referer );
+			$referer = remove_query_arg( 'register_error_codes', $referer );
+		}
+
+		return $referer;
 	}
 }

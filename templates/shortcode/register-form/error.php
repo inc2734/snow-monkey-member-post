@@ -4,6 +4,9 @@
  * @author inc2734
  * @license GPL-2.0+
  */
+
+$error_codes = filter_input( INPUT_GET, 'register_error_codes' );
+$error_codes = explode( ',', $error_codes );
 ?>
 <div class="wpac-alert wpac-alert--warning">
 	<?php
