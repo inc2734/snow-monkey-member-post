@@ -25,21 +25,19 @@ class LoginForm {
 	 * @see https://core.trac.wordpress.org/browser/trunk/src/wp-login.php
 	 */
 	public function _view( $atts ) {
-		if ( is_user_logged_in() ) {
-			ob_start();
-			View::render( 'shortcode/login-form/loggedin' );
-			return ob_get_clean();
-		}
-
 		$atts = shortcode_atts(
 			[
 				'redirect_to' => $this->_get_current_url(),
+				'current_url' => $this->_get_current_url(),
 			],
 			$atts
 		);
 
 		ob_start();
-		View::render( 'shortcode/login-form/index', $atts );
+		View::render(
+			is_user_logged_in() ? 'shortcode/login-form/loggedin' : 'shortcode/login-form/index',
+			$atts
+		);
 		return ob_get_clean();
 	}
 
@@ -67,14 +65,21 @@ class LoginForm {
 		}
 
 		$redirect_to = filter_input( INPUT_POST, 'redirect_to' );
-		if ( ! $redirect_to ) {
+		$current_url = filter_input( INPUT_POST, 'current_url' );
+		if ( ! $redirect_to || ! $current_url ) {
 			return $user;
 		}
 
 		$error_codes = implode( ',', $user->get_error_codes() );
 		$redirect_to = add_query_arg( 'login_error_codes', $error_codes, $redirect_to );
 
-		wp_safe_redirect( $redirect_to );
+		if ( empty( $error_codes ) ) {
+			wp_safe_redirect( $redirect_to );
+		} else {
+			$current_url = remove_query_arg( 'login_error_codes', $current_url );
+			$current_url = add_query_arg( 'login_error_codes', $error_codes, $current_url );
+			wp_safe_redirect( $current_url );
+		}
 	}
 
 	/**
