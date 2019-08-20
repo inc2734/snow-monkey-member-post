@@ -12,9 +12,27 @@ use Snow_Monkey\Plugin\SnowMonkeyMemberPost\App\View;
 
 class LoginForm {
 
+	protected $in_the_view = false;
+	protected $view_slug;
+
 	public function __construct() {
+		add_filter( 'inc2734_wp_view_controller_view', [ $this, '_set_in_the_view' ] );
+		add_action( 'inc2734_view_controller_get_template_part_post_render', [ $this, '_unset_in_the_view' ] );
+
 		add_shortcode( 'snow_monkey_member_post_login_form', [ $this, '_view' ] );
 		add_filter( 'authenticate', [ $this, '_redirect' ], 101, 3 );
+	}
+
+	public function _set_in_the_view( $view ) {
+		$this->in_the_view = true;
+		$this->view_slug   = $view['slug'];
+		return $view;
+	}
+
+	public function _unset_in_the_view( $args ) {
+		if ( $this->view_slug === $args['slug'] ) {
+			$this->in_the_view = false;
+		}
 	}
 
 	/**
@@ -25,6 +43,10 @@ class LoginForm {
 	 * @see https://core.trac.wordpress.org/browser/trunk/src/wp-login.php
 	 */
 	public function _view( $atts ) {
+		if ( is_user_logged_in() && $this->in_the_view ) {
+			return;
+		}
+
 		$atts = shortcode_atts(
 			[
 				'redirect_to' => $this->_get_current_url(),
