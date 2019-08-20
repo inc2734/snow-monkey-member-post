@@ -8,7 +8,7 @@
 use Snow_Monkey\Plugin\SnowMonkeyMemberPost\App\Config;
 use Snow_Monkey\Plugin\SnowMonkeyMemberPost\App\View;
 
-if ( filter_input( INPUT_GET, 'login_error_codes' ) && explode( ',', $login ) ) {
+if ( filter_input( INPUT_GET, 'login_error_codes' ) ) {
 	View::render( 'shortcode/login-form/error' );
 }
 ?>
@@ -38,7 +38,6 @@ if ( filter_input( INPUT_GET, 'login_error_codes' ) && explode( ',', $login ) ) 
 				<?php esc_attr_e( 'Log In', 'snow-monkey-member-post' ); ?>
 			</button>
 			<input type="hidden" name="redirect_to" value="<?php echo esc_attr( $redirect_to ); ?>">
-			<input type="hidden" name="current_url" value="<?php echo esc_attr( $current_url ); ?>">
 		</div>
 		<div class="c-row__col c-row__col--1-1">
 			<ul class="smmp-login-form__nav">
@@ -63,4 +62,3 @@ if ( filter_input( INPUT_GET, 'login_error_codes' ) && explode( ',', $login ) ) 
 	?>
 	<input type="hidden" name="<?php echo esc_attr( $nonce_key ); ?>" value="<?php echo esc_attr( $nonce ); ?>">
 </form>
-

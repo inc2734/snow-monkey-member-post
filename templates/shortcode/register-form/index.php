@@ -8,7 +8,7 @@
 use Snow_Monkey\Plugin\SnowMonkeyMemberPost\App\Config;
 use Snow_Monkey\Plugin\SnowMonkeyMemberPost\App\View;
 
-if ( filter_input( INPUT_GET, 'register_error_codes' ) && explode( ',', $login ) ) {
+if ( filter_input( INPUT_GET, 'register_error_codes' ) ) {
 	View::render( 'shortcode/register-form/error' );
 }
 ?>
