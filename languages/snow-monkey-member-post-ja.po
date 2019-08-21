@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Snow Monkey Member Post\n"
-"POT-Creation-Date: 2019-08-20 13:47+0900\n"
-"PO-Revision-Date: 2019-08-20 13:47+0900\n"
+"POT-Creation-Date: 2019-08-21 22:38+0900\n"
+"PO-Revision-Date: 2019-08-21 22:38+0900\n"
 "Last-Translator: inc2734 <inc@2inc.org>\n"
 "Language-Team: inc2734 <inc@2inc.org>\n"
 "Language: ja_JP\n"
@@ -29,6 +29,10 @@ msgstr "メンバー限定"
 #: App/Controller/Post.php:45
 msgid "Snow Monkey Member Post"
 msgstr "Snow Monkey Member Post"
+
+#: snow-monkey-member-post.php:64
+msgid "[Snow Monkey Member Post] Needs the Snow Monkey."
+msgstr "[Snow Monkey Member Post] Snow Monkeyが必要です。"
 
 #: templates/content/allowed/index.php:17
 msgid "From here on, it is content for members only."
@@ -70,11 +74,11 @@ msgstr "ログイン状態を保存する"
 msgid "Lost your password?"
 msgstr "パスワードをお忘れですか ?"
 
-#: templates/shortcode/logout/index.php:11
+#: templates/shortcode/logout/index.php:10
 msgid "Are you attempting to log out?"
 msgstr "ログアウトしますか？"
 
-#: templates/shortcode/logout/index.php:14
+#: templates/shortcode/logout/index.php:10
 msgid "Log out"
 msgstr "ログアウト"
 
