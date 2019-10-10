@@ -17,7 +17,12 @@ class LoginForm {
 
 	public function __construct() {
 		add_filter( 'inc2734_wp_view_controller_view', [ $this, '_set_in_the_view' ] );
+
+		// For under Snow Monkey v7
 		add_action( 'inc2734_view_controller_get_template_part_post_render', [ $this, '_unset_in_the_view' ] );
+
+		// For over Snow Monkey v8
+		add_action( 'inc2734_wp_view_controller_get_template_part_post_render', [ $this, '_unset_in_the_view' ] );
 
 		add_shortcode( 'snow_monkey_member_post_login_form', [ $this, '_view' ] );
 		add_filter( 'authenticate', [ $this, '_redirect' ], 101, 3 );
