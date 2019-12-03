@@ -16,9 +16,9 @@ class Assets {
 	public function _enqueue_style() {
 		wp_enqueue_style(
 			'snow-monkey-member-post',
-			SNOW_MONKEY_MEMBER_POST_URL . '/dist/css/style.min.css',
-			[],
-			filemtime( SNOW_MONKEY_MEMBER_POST_PATH . '/dist/css/style.min.css' )
+			SNOW_MONKEY_MEMBER_POST_URL . '/dist/css/style.css',
+			[ \Framework\Helper::get_main_style_handle() ],
+			filemtime( SNOW_MONKEY_MEMBER_POST_PATH . '/dist/css/style.css' )
 		);
 	}
 }
