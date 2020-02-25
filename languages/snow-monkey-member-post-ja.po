@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Snow Monkey Member Post\n"
-"POT-Creation-Date: 2019-08-21 22:38+0900\n"
-"PO-Revision-Date: 2019-08-21 22:38+0900\n"
+"POT-Creation-Date: 2020-02-25 09:40+0900\n"
+"PO-Revision-Date: 2020-02-25 09:40+0900\n"
 "Last-Translator: inc2734 <inc@2inc.org>\n"
 "Language-Team: inc2734 <inc@2inc.org>\n"
 "Language: ja_JP\n"
@@ -47,8 +47,8 @@ msgid "Please login to view this page."
 msgstr "このページを表示するにはログインしてください。"
 
 #: templates/meta-box.php:31
-msgid "Allow login users to display this article"
-msgstr "ログインユーザーにこの記事を表示させる"
+msgid "Show this article only members"
+msgstr "メンバー限定でこの記事を表示する"
 
 #: templates/shortcode/login-form/error.php:9
 msgid "The username or password is incorrect."
@@ -120,6 +120,15 @@ msgstr "登録が完了しました。メールを確認してください。"
 msgid "Currently, user registration is restricted."
 msgstr "現在、ユーザー登録は制限されています。"
 
+#: vendor/inc2734/wp-github-plugin-updater/src/Bootstrap.php:287
+msgid "Failed to get update response."
+msgstr "更新情報の取得に失敗しました。"
+
+#: vendor/inc2734/wp-github-plugin-updater/src/Bootstrap.php:292
+#, php-format
+msgid "[%1$s] %2$s"
+msgstr "[%1$s] %2$s"
+
 #. Description of the plugin/theme
 msgid ""
 "It's a plugin that provides a function that allows only logged-in users to "
@@ -127,6 +136,9 @@ msgid ""
 msgstr ""
 "ログインしているユーザーだけが記事を表示できるようにする機能を提供するプラ"
 "グインです。"
+
+#~ msgid "Allow login users to display this article"
+#~ msgstr "ログインユーザーにこの記事を表示させる"
 
 #~ msgid "You are logged in."
 #~ msgstr "ログインしています。"

@@ -28,6 +28,6 @@ $nonce     = wp_create_nonce( Config::get( 'restriction-nonce-key' ) );
 			value="1"
 			<?php checked( 1, get_post_meta( get_the_ID(), Config::get( 'restriction-key' ), true ) ); ?>
 		>
-		<?php esc_html_e( 'Allow login users to display this article', 'snow-monkey-member-post' ); ?>
+		<?php esc_html_e( 'Show this article only members', 'snow-monkey-member-post' ); ?>
 	</label>
 </p>

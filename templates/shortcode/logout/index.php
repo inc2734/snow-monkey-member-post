@@ -7,5 +7,5 @@
 ?>
 
 <div class="wpac-alert">
-	<?php esc_attr_e( 'Are you attempting to log out?', 'snow-monkey-member-post' ); ?> <a href="<?php echo wp_logout_url( $redirect_to ); ?>" class="button logout-link"><?php esc_html_e( 'Log out', 'snow-monkey-member-post' ); ?></a>
+	<?php esc_attr_e( 'Are you attempting to log out?', 'snow-monkey-member-post' ); ?> <a href="<?php echo esc_url( wp_logout_url( $redirect_to ) ); ?>" class="button logout-link"><?php esc_html_e( 'Log out', 'snow-monkey-member-post' ); ?></a>
 </div>
