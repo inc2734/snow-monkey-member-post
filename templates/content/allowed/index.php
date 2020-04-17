@@ -5,7 +5,7 @@
  * @license GPL-2.0+
  */
 
-use Snow_Monkey\Plugin\SnowMonkeyMemberPost\App\View;
+use Snow_Monkey\Plugin\MemberPost\App\View;
 
 $extended = View::get_extended( $content );
 echo $extended['main']; // XSS ok.

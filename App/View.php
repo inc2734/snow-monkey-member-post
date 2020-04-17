@@ -5,7 +5,7 @@
  * @license GPL-2.0+
  */
 
-namespace Snow_Monkey\Plugin\SnowMonkeyMemberPost\App;
+namespace Snow_Monkey\Plugin\MemberPost\App;
 
 use Inc2734\WP_Plugin_View_Controller\Bootstrap;
 

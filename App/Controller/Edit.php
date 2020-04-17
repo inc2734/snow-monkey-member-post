@@ -5,9 +5,9 @@
  * @license GPL-2.0+
  */
 
-namespace Snow_Monkey\Plugin\SnowMonkeyMemberPost\App\Controller;
+namespace Snow_Monkey\Plugin\MemberPost\App\Controller;
 
-use Snow_Monkey\Plugin\SnowMonkeyMemberPost\App\Config;
+use Snow_Monkey\Plugin\MemberPost\App\Config;
 
 class Edit {
 

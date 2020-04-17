@@ -5,12 +5,12 @@
  * @license GPL-2.0+
  */
 
-namespace Snow_Monkey\Plugin\SnowMonkeyMemberPost\App\Controller;
+namespace Snow_Monkey\Plugin\MemberPost\App\Controller;
 
-use Snow_Monkey\Plugin\SnowMonkeyMemberPost\App\Config;
-use Snow_Monkey\Plugin\SnowMonkeyMemberPost\App\View;
+use Snow_Monkey\Plugin\MemberPost\App\Helper;
+use Snow_Monkey\Plugin\MemberPost\App\View;
 
-class Excerpt extends Content {
+class Excerpt {
 
 	public function __construct() {
 		add_filter( 'the_excerpt', [ $this, '_restrict_excerpt' ], 9 );
@@ -25,7 +25,7 @@ class Excerpt extends Content {
 	public function _restrict_excerpt( $content ) {
 		$post = get_post();
 
-		if ( ! $this->_is_restricted( $post ) ) {
+		if ( ! $post || ! Helper::is_restricted( $post->ID ) ) {
 			return $content;
 		}
 

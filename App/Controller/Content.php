@@ -5,10 +5,10 @@
  * @license GPL-2.0+
  */
 
-namespace Snow_Monkey\Plugin\SnowMonkeyMemberPost\App\Controller;
+namespace Snow_Monkey\Plugin\MemberPost\App\Controller;
 
-use Snow_Monkey\Plugin\SnowMonkeyMemberPost\App\Config;
-use Snow_Monkey\Plugin\SnowMonkeyMemberPost\App\View;
+use Snow_Monkey\Plugin\MemberPost\App\Helper;
+use Snow_Monkey\Plugin\MemberPost\App\View;
 
 class Content {
 
@@ -25,7 +25,7 @@ class Content {
 	public function _restrict_content( $content ) {
 		$post = get_post();
 
-		if ( ! $this->_has_restriction_meta( $post ) ) {
+		if ( ! $post || ! Helper::has_restriction_meta( $post->ID ) ) {
 			return $content;
 		}
 
@@ -35,54 +35,12 @@ class Content {
 		];
 
 		ob_start();
-		if ( $this->_is_restricted( $post ) ) {
+		if ( Helper::is_restricted( $post->ID ) ) {
 			View::render( 'content/disallowed/index', $args );
 		} else {
 			View::render( 'content/allowed/index', $args );
 		}
 
 		return ob_get_clean();
-	}
-
-	/**
-	 * Return true when the post is restricted
-	 *
-	 * @param WP_Post $post
-	 * @return boolean
-	 */
-	protected function _is_restricted( $post ) {
-		$return = true;
-		$has_restriction_meta = $this->_has_restriction_meta( $post );
-
-		if ( ! $post || ! $has_restriction_meta ) {
-			return false;
-		}
-
-		if ( is_user_logged_in() ) {
-			$return = false;
-		}
-
-		/**
-		 * You can customize whether the content is restricted or not.
-		 *
-		 * @param boolean $return
-		 * @param boolean $has_restriction_meta
-		 * @param WP_Post $post
-		 */
-		return apply_filters( 'snow_monkey_member_post_is_restricted', $return, $has_restriction_meta, $post );
-	}
-
-	/**
-	 * Return true when the post have restriction meta
-	 *
-	 * @param WP_Post $post
-	 * @return boolean
-	 */
-	protected function _has_restriction_meta( $post ) {
-		if ( ! $post ) {
-			return false;
-		}
-
-		return (bool) get_post_meta( $post->ID, Config::get( 'restriction-key' ), true );
 	}
 }

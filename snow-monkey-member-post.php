@@ -9,8 +9,9 @@
  * @license GPL-2.0+
  */
 
-namespace Snow_Monkey\Plugin\SnowMonkeyMemberPost;
+namespace Snow_Monkey\Plugin\MemberPost;
 
+use Snow_Monkey\Plugin\MemberPost\App\Helper;
 use Inc2734\WP_GitHub_Plugin_Updater\Bootstrap as Updater;
 
 define( 'SNOW_MONKEY_MEMBER_POST_URL', untrailingslashit( plugin_dir_url( __FILE__ ) ) );
@@ -33,7 +34,12 @@ class Bootstrap {
 			return;
 		}
 
-		new App\Setup\Assets();
+		foreach ( glob( SNOW_MONKEY_MEMBER_POST_PATH . '/App/Setup/*.php' ) as $file ) {
+			$class_name = '\\Snow_Monkey\\Plugin\\MemberPost\\App\\Setup\\' . str_replace( '.php', '', basename( $file ) );
+			if ( class_exists( $class_name ) ) {
+				new $class_name();
+			}
+		}
 
 		new App\Controller\Post();
 		new App\Controller\Edit();
@@ -42,6 +48,22 @@ class Bootstrap {
 
 		new App\Shortcode\LoginForm();
 		new App\Shortcode\RegisterForm();
+
+		if ( ! is_admin() ) {
+			add_action( 'render_block', [ $this, '_restricted' ], 10, 2 );
+		}
+	}
+
+	public function _restricted( $content, $block ) {
+		$attributes = $block['attrs'];
+		$is_restricted = isset( $attributes['smmpIsRestrected'] ) ? $attributes['smmpIsRestrected'] : false;
+		if ( $is_restricted ) {
+			$post = get_post();
+			if ( $post && Helper::is_restricted( $post->ID ) ) {
+				return;
+			}
+		}
+		return $content;
 	}
 
 	/**

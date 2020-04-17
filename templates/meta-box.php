@@ -5,7 +5,7 @@
  * @license GPL-2.0+
  */
 
-use Snow_Monkey\Plugin\SnowMonkeyMemberPost\App\Config;
+use Snow_Monkey\Plugin\MemberPost\App\Config;
 
 $nonce_key = Config::get( 'restriction-nonce-key' );
 $nonce     = wp_create_nonce( Config::get( 'restriction-nonce-key' ) );

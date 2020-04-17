@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Snow Monkey Member Post\n"
-"POT-Creation-Date: 2020-02-25 09:40+0900\n"
-"PO-Revision-Date: 2020-02-25 09:40+0900\n"
+"POT-Creation-Date: 2020-04-17 10:31+0900\n"
+"PO-Revision-Date: 2020-04-17 10:31+0900\n"
 "Last-Translator: inc2734 <inc@2inc.org>\n"
 "Language-Team: inc2734 <inc@2inc.org>\n"
 "Language: ja_JP\n"
@@ -19,18 +19,22 @@ msgstr ""
 "esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
 "_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
-"X-Poedit-SearchPathExcluded-0: *.js\n"
+"X-Poedit-SearchPathExcluded-0: vendor\n"
+"X-Poedit-SearchPathExcluded-1: node_modules\n"
+"X-Poedit-SearchPathExcluded-2: dist\n"
+"X-Poedit-SearchPathExcluded-3: tests\n"
+"X-Poedit-SearchPathExcluded-4: languages\n"
 
 #: App/Controller/Edit.php:27
 msgid "Members only"
 msgstr "メンバー限定"
 
 #. Plugin Name of the plugin/theme
-#: App/Controller/Post.php:45
+#: App/Controller/Post.php:45 src/extension/restrected/editor.js:71
 msgid "Snow Monkey Member Post"
 msgstr "Snow Monkey Member Post"
 
-#: snow-monkey-member-post.php:64
+#: snow-monkey-member-post.php:81
 msgid "[Snow Monkey Member Post] Needs the Snow Monkey."
 msgstr "[Snow Monkey Member Post] Snow Monkeyが必要です。"
 
@@ -120,14 +124,9 @@ msgstr "登録が完了しました。メールを確認してください。"
 msgid "Currently, user registration is restricted."
 msgstr "現在、ユーザー登録は制限されています。"
 
-#: vendor/inc2734/wp-github-plugin-updater/src/Bootstrap.php:287
-msgid "Failed to get update response."
-msgstr "更新情報の取得に失敗しました。"
-
-#: vendor/inc2734/wp-github-plugin-updater/src/Bootstrap.php:292
-#, php-format
-msgid "[%1$s] %2$s"
-msgstr "[%1$s] %2$s"
+#: src/extension/restrected/editor.js:80
+msgid "Show this block for members only"
+msgstr "このブロックをメンバー限定表示にする"
 
 #. Description of the plugin/theme
 msgid ""
@@ -136,6 +135,12 @@ msgid ""
 msgstr ""
 "ログインしているユーザーだけが記事を表示できるようにする機能を提供するプラ"
 "グインです。"
+
+#~ msgid "Failed to get update response."
+#~ msgstr "更新情報の取得に失敗しました。"
+
+#~ msgid "[%1$s] %2$s"
+#~ msgstr "[%1$s] %2$s"
 
 #~ msgid "Allow login users to display this article"
 #~ msgstr "ログインユーザーにこの記事を表示させる"

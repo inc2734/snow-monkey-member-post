@@ -5,8 +5,8 @@
  * @license GPL-2.0+
  */
 
-use Snow_Monkey\Plugin\SnowMonkeyMemberPost\App\Config;
-use Snow_Monkey\Plugin\SnowMonkeyMemberPost\App\View;
+use Snow_Monkey\Plugin\MemberPost\App\Config;
+use Snow_Monkey\Plugin\MemberPost\App\View;
 
 if ( filter_input( INPUT_GET, 'register_error_codes' ) ) {
 	View::render( 'shortcode/register-form/error' );

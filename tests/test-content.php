@@ -5,8 +5,8 @@
  * @package snow-monkey-blocks
  */
 
-use Snow_Monkey\Plugin\SnowMonkeyMemberPost\App;
-use Snow_Monkey\Plugin\SnowMonkeyMemberPost\App\Config;
+use Snow_Monkey\Plugin\MemberPost\App;
+use Snow_Monkey\Plugin\MemberPost\App\Config;
 
 /**
  * Sample test case.

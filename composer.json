@@ -30,7 +30,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Snow_Monkey\\Plugin\\SnowMonkeyMemberPost\\": ""
+      "Snow_Monkey\\Plugin\\MemberPost\\": ""
     }
   }
 }

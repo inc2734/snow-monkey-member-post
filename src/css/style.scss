@@ -1,5 +1,4 @@
-$_font-path: false;
-@import '../../node_modules/sass-basis/src/css/basis-core';
+@import 'core/core';
 
 .smmp-login-form {
   label {
@@ -42,8 +41,6 @@ $_font-path: false;
 }
 
 .smmp-alert {
-  $alert-color: #fff9e6;
-
   background-color: $alert-color;
   border: 1px solid darken($alert-color, 5%);
   color: darken(desaturate($alert-color, 60%), 70%);
