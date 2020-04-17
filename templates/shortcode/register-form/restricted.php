@@ -6,6 +6,6 @@
  */
 ?>
 
-<div class="wpac-alert wpac-alert--warning">
+<div class="smmp-alert smmp-alert--warning">
 	<?php esc_html_e( 'Currently, user registration is restricted.', 'snow-monkey-member-post' ); ?>
 </div>

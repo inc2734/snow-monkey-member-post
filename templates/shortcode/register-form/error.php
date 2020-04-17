@@ -8,7 +8,7 @@
 $error_codes = filter_input( INPUT_GET, 'register_error_codes' );
 $error_codes = explode( ',', $error_codes );
 ?>
-<div class="wpac-alert wpac-alert--warning">
+<div class="smmp-alert smmp-alert--warning">
 	<?php
 	$error_messages = [];
 	if ( in_array( 'username_exists', $error_codes ) ) {

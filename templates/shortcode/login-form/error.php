@@ -5,6 +5,6 @@
  * @license GPL-2.0+
  */
 ?>
-<div class="wpac-alert wpac-alert--warning">
+<div class="smmp-alert smmp-alert--warning">
 	<?php esc_html_e( 'The username or password is incorrect.', 'snow-monkey-member-post' ); ?>
 </div>

@@ -6,6 +6,6 @@
  */
 ?>
 
-<div class="wpac-alert wpac-alert--success">
+<div class="smmp-alert smmp-alert--success">
 	<?php esc_html_e( 'Registration complete. Please check your email.', 'snow-monkey-member-post' ); ?>
 </div>

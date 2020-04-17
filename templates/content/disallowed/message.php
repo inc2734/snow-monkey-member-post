@@ -6,6 +6,6 @@
  */
 ?>
 
-<div class="wpac-alert">
+<div class="smmp-alert">
 	<?php echo wp_kses_post( $message ); ?>
 </div>
