@@ -30,7 +30,7 @@ class Assets {
 	 * @return void
 	 */
 	public function _enqueue_block_editor_extension() {
-		$asset = include( SNOW_MONKEY_EDITOR_PATH . '/dist/js/editor-extension.asset.php' );
+		$asset = include( SNOW_MONKEY_MEMBER_POST_PATH . '/dist/js/editor-extension.asset.php' );
 		wp_enqueue_script(
 			'snow-monkey-member-post@editor-extension',
 			SNOW_MONKEY_MEMBER_POST_URL . '/dist/js/editor-extension.js',
