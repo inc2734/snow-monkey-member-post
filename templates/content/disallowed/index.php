@@ -21,6 +21,6 @@ $message .= __( 'Please login to view this page.', 'snow-monkey-member-post' );
  * @param string $message
  * @return string
  */
-$message = apply_filters( 'snow_monkey_member_post_restricted_content_message', $message );
+$message = apply_filters( 'snow_monkey_member_post_restricted_content_message', $message, $post );
 
 View::render( 'content/disallowed/message', [ 'message' => $message ] );

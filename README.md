@@ -87,9 +87,11 @@ add_filter(
  */
 add_filter(
   'snow_monkey_member_post_allowed_content_message',
-  function( $message ) {
+  function( $message, $post ) {
     return $message;
-  }
+  },
+  10,
+  2
 );
 ```
 
@@ -103,9 +105,11 @@ add_filter(
  */
 add_filter(
   'snow_monkey_member_post_restricted_content_message',
-  function( $message ) {
+  function( $message, $post ) {
     return $message;
-  }
+  },
+  10,
+  2
 );
 ```
 

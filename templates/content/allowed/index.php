@@ -22,7 +22,7 @@ $message = __( 'From here on, it is content for members only.', 'snow-monkey-mem
  * @param string $message
  * @return string
  */
-$message = apply_filters( 'snow_monkey_member_post_allowed_content_message', $message );
+$message = apply_filters( 'snow_monkey_member_post_allowed_content_message', $message, $post );
 
 View::render( 'content/allowed/message', [ 'message' => $message ] );
 
