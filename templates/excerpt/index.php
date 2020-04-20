@@ -26,6 +26,6 @@ $message = __( 'Viewing is restricted.', 'snow-monkey-member-post' );
  * @param string
  * @return staring
  */
-$message = apply_filters( 'snow_monkey_member_post_restricted_excerpt_message', $message );
+$message = apply_filters( 'snow_monkey_member_post_restricted_excerpt_message', $message, $post );
 
 echo wp_kses_post( $message );
