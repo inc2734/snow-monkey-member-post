@@ -10,7 +10,7 @@
     "postcss-cli": "^7.1.0",
     "rimraf": "^3.0.2",
     "sass-basis": "^10.1.1",
-    "@wordpress/scripts": "7.2.0",
+    "@wordpress/scripts": "8.0.1",
     "prettier": "npm:wp-prettier@1.19.1",
     "po2json": "^1.0.0-alpha"
   },
@@ -24,7 +24,7 @@
     "css": "npm run clean:css && node-sass src/css -o dist/css && postcss dist/css/*.css -r",
     "js:editor-extension": "wp-scripts build src/js/editor-extension.js --output-path dist/js",
     "js": "npm run clean:js && npm-run-all -p js:*",
-    "po2json:snow-monkey-editor@editor-extension": "po2json languages/snow-monkey-member-post-ja.po languages/snow-monkey-member-post-ja-snow-monkey-member-post@editor-extension.json -f jed",
+    "po2json:snow-monkey-member-post@editor-extension": "po2json languages/snow-monkey-member-post-ja.po languages/snow-monkey-member-post-ja-snow-monkey-member-post@editor-extension.json -f jed",
     "po2json": "npm-run-all -p po2json:*",
     "build": "npm-run-all -p css js po2json",
     "clean:zip": "rimraf snow-monkey-member-post.zip",
