@@ -123,9 +123,11 @@ add_filter(
  */
 add_filter(
   'snow_monkey_member_post_restricted_excerpt_message',
-  function( $message ) {
+  function( $message, $post ) {
     return $message;
-  }
+  },
+	10,
+	2
 );
 ```
 
