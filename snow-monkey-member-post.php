@@ -11,6 +11,7 @@
 
 namespace Snow_Monkey\Plugin\MemberPost;
 
+use WP_Block_Type_Registry;
 use Snow_Monkey\Plugin\MemberPost\App\Helper;
 use Inc2734\WP_GitHub_Plugin_Updater\Bootstrap as Updater;
 
@@ -26,6 +27,7 @@ class Bootstrap {
 	public function _bootstrap() {
 		load_plugin_textdomain( 'snow-monkey-member-post', false, basename( __DIR__ ) . '/languages' );
 
+		add_action( 'init', array( $this, '_add_attributes_to_blocks' ), 11 );
 		add_action( 'init', [ $this, '_activate_autoupdate' ] );
 
 		$theme = wp_get_theme( get_template() );
@@ -64,6 +66,30 @@ class Bootstrap {
 			}
 		}
 		return $content;
+	}
+
+	/**
+	 * Adds attributes to all blocks, to avoid `Invalid parameter(s): attributes` error in Gutenberg.
+	 *
+	 * @see https://plugins.trac.wordpress.org/browser/blocks-animation/trunk/vendor/codeinwp/gutenberg-animation/class-gutenberg-animation.php#L109
+	 */
+	public function _add_attributes_to_blocks() {
+		$attributes = [];
+		foreach ( glob( SNOW_MONKEY_MEMBER_POST_PATH . '/src/extension/*', GLOB_ONLYDIR ) as $dir ) {
+			foreach ( glob( $dir . '/attributes.json' ) as $file ) {
+				$_attributes = file_get_contents( $file );
+				$_attributes = json_decode( $_attributes, true );
+				$attributes = array_merge( $attributes, $_attributes );
+			}
+		}
+
+		$registered_blocks = WP_Block_Type_Registry::get_instance()->get_all_registered();
+
+		foreach ( $registered_blocks as $name => $block ) {
+			foreach ( $attributes as $name => $detail ) {
+				$block->attributes[ $name ] = $detail;
+			}
+		}
 	}
 
 	/**
