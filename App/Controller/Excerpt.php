@@ -25,7 +25,7 @@ class Excerpt {
 	public function _restrict_excerpt( $content ) {
 		$post = get_post();
 
-		if ( ! $post || ! Helper::is_restricted( $post->ID ) ) {
+		if ( ! $post || $post->post_excerpt || ! Helper::has_restriction_meta( $post->ID ) ) {
 			return $content;
 		}
 

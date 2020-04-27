@@ -31,11 +31,30 @@ class ExcerptTest extends WP_UnitTestCase {
 	/**
 	 * @test
 	 */
+	public function no_restricted_has_excerpt() {
+		$post    = $this->_create_post( [ 'post_content' => 'content', 'post_excerpt' => 'excerpt' ] );
+		$content = $this->_get_the_excerpt( $post );
+		$this->assertEquals( 'excerpt', trim( strip_tags( $content ) ) );
+	}
+
+	/**
+	 * @test
+	 */
 	public function restricted() {
 		$post = $this->_create_post( [ 'post_content' => 'content', 'post_excerpt' => '' ] );
 		update_post_meta( $post->ID, Config::get( 'restriction-key' ), 1 );
 		$content = $this->_get_the_excerpt( $post );
-		$this->assertNotEquals( 'content', trim( strip_tags( $content ) ) );
+		$this->assertEquals( 'Viewing is restricted.', trim( strip_tags( $content ) ) );
+	}
+
+	/**
+	 * @test
+	 */
+	public function restricted_has_excerpt() {
+		$post = $this->_create_post( [ 'post_content' => 'content', 'post_excerpt' => 'excerpt' ] );
+		update_post_meta( $post->ID, Config::get( 'restriction-key' ), 1 );
+		$content = $this->_get_the_excerpt( $post );
+		$this->assertEquals( 'excerpt', trim( strip_tags( $content ) ) );
 	}
 
 	/**
@@ -45,8 +64,17 @@ class ExcerptTest extends WP_UnitTestCase {
 		$post = $this->_create_post( [ 'post_content' => 'before<!--more-->after', 'post_excerpt' => '' ] );
 		update_post_meta( $post->ID, Config::get( 'restriction-key' ), 1 );
 		$content = $this->_get_the_excerpt( $post );
-		$this->assertNotEquals( 'content', trim( strip_tags( $content ) ) );
-		$this->assertRegExp( '/^before/', trim( strip_tags( $content ) ) );
+		$this->assertEquals( 'before', trim( strip_tags( $content ) ) );
+	}
+
+	/**
+	 * @test
+	 */
+	public function restricted_has_more_only() {
+		$post = $this->_create_post( [ 'post_content' => '<!--more-->after', 'post_excerpt' => '' ] );
+		update_post_meta( $post->ID, Config::get( 'restriction-key' ), 1 );
+		$content = $this->_get_the_excerpt( $post );
+		$this->assertEquals( 'Viewing is restricted.', trim( strip_tags( $content ) ) );
 	}
 
 	protected function _create_post( $args ) {

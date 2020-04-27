@@ -35,7 +35,7 @@ class ContentTest extends WP_UnitTestCase {
 		$post = $this->_create_post( [ 'post_content' => 'content' ] );
 		update_post_meta( $post->ID, Config::get( 'restriction-key' ), 1 );
 		$content = $this->_get_the_content( $post );
-		$this->assertNotEquals( 'content', trim( strip_tags( $content ) ) );
+		$this->assertEquals( 'Viewing is restricted.Please login to view this page.', trim( strip_tags( $content ) ) );
 	}
 
 	/**
@@ -45,8 +45,10 @@ class ContentTest extends WP_UnitTestCase {
 		$post = $this->_create_post( [ 'post_content' => 'before<span id="more-1"><\/span>after' ] );
 		update_post_meta( $post->ID, Config::get( 'restriction-key' ), 1 );
 		$content = $this->_get_the_content( $post );
-		$this->assertNotEquals( 'content', trim( strip_tags( $content ) ) );
-		$this->assertRegExp( '/^before/', trim( strip_tags( $content ) ) );
+		$this->assertEquals(
+			'before Viewing is restricted.Please login to view this page.',
+			trim( preg_replace( '/\s+/', ' ' ,strip_tags( $content ) ) )
+		);
 	}
 
 	protected function _create_post( $args ) {
