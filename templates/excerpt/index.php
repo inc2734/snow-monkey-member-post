@@ -8,7 +8,7 @@
 use Snow_Monkey\Plugin\MemberPost\App\Helper;
 
 $extended = get_extended( $post->post_content );
-$main = preg_replace( '/<!--(.*)-->/Uis', '', $extended['main'] );
+$main = preg_replace( '/<!-- more -->/', '', $extended['main'] );
 
 if ( Helper::is_restricted( $post->ID ) ) {
 	if ( ! empty( $main ) && ! empty( $extended['extended'] ) ) {

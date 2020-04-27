@@ -35,7 +35,13 @@ class Excerpt {
 		];
 
 		ob_start();
-		View::render( 'excerpt/index', $args );
+
+		if ( Helper::is_restricted( $post->ID ) ) {
+			View::render( 'excerpt/disallowed/index', $args );
+		} else {
+			View::render( 'excerpt/allowed/index', $args );
+		}
+
 		return ob_get_clean();
 	}
 }
