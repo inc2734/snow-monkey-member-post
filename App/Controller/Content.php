@@ -35,6 +35,7 @@ class Content {
 		];
 
 		ob_start();
+
 		if ( Helper::is_restricted( $post->ID ) ) {
 			View::render( 'content/disallowed/index', $args );
 		} else {

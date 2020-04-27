@@ -6,7 +6,7 @@
  */
 
 $extended = get_extended( $post->post_content );
-if ( ! empty( $extended['extended'] ) ) {
+if ( empty( $extended['extended'] ) ) {
 	/**
 	 * @see https://developer.wordpress.org/reference/functions/wp_trim_excerpt/
 	 */
