@@ -16,7 +16,7 @@ if ( ! empty( $main ) && ! empty( $extended['extended'] ) ) {
 	 */
 	$excerpt_length = apply_filters( 'excerpt_length', 55 );
 	$excerpt_more   = apply_filters( 'excerpt_more', ' [&hellip;]' );
-	$message = wp_trim_words( $extended['main'], $excerpt_length, $excerpt_more );
+	$message        = wp_trim_words( $extended['main'], $excerpt_length, $excerpt_more );
 } else {
 	$message = __( 'Viewing is restricted.', 'snow-monkey-member-post' );
 
@@ -24,7 +24,7 @@ if ( ! empty( $main ) && ! empty( $extended['extended'] ) ) {
 	 * You can customize the messages that appear on excerpt of unauthorized content.
 	 *
 	 * @param string
-	 * @return staring
+	 * @return string
 	 */
 	$message = apply_filters( 'snow_monkey_member_post_restricted_excerpt_message', $message, $post );
 }
