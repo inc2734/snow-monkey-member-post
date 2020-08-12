@@ -2,7 +2,7 @@
 /**
  * Plugin name: Snow Monkey Member Post
  * Description: It's a plugin that provides a function that allows only logged-in users to view articles.
- * Version: 4.0.0
+ * Version: 4.0.1
  * Tested up to: 5.5
  * Requires at least: 5.5
  * Requires PHP: 5.6
@@ -30,6 +30,7 @@ class Bootstrap {
 	public function _bootstrap() {
 		load_plugin_textdomain( 'snow-monkey-member-post', false, basename( __DIR__ ) . '/languages' );
 
+		add_action( 'init', array( $this, '_add_attributes_to_blocks' ), 11 );
 		add_action( 'init', [ $this, '_activate_autoupdate' ] );
 
 		$theme = wp_get_theme( get_template() );
@@ -68,6 +69,30 @@ class Bootstrap {
 			}
 		}
 		return $content;
+	}
+
+	/**
+	 * Adds attributes to all blocks, to avoid `Invalid parameter(s): attributes` error in Gutenberg.
+	 *
+	 * @see https://github.com/Codeinwp/gutenberg-animation/blob/a0efe29a3ce023e0f562bb9a51d34b345431b642/class-gutenberg-animation.php#L105-L119
+	 */
+	public function _add_attributes_to_blocks() {
+		$attributes = [];
+		foreach ( glob( SNOW_MONKEY_MEMBER_POST_PATH . '/src/extension/*', GLOB_ONLYDIR ) as $dir ) {
+			foreach ( glob( $dir . '/attributes.json' ) as $file ) {
+				$_attributes = file_get_contents( $file );
+				$_attributes = json_decode( $_attributes, true );
+				$attributes = array_merge( $attributes, $_attributes );
+			}
+		}
+
+		$registered_blocks = WP_Block_Type_Registry::get_instance()->get_all_registered();
+
+		foreach ( $registered_blocks as $name => $block ) {
+			foreach ( $attributes as $name => $detail ) {
+				$block->attributes[ $name ] = $detail;
+			}
+		}
 	}
 
 	/**
