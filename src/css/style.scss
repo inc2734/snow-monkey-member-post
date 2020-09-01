@@ -23,12 +23,14 @@
       margin: 0;
       padding: 0;
 
-      @media (min-width: 1024px) {
+      @include _media-min(lg) {
         display: inline-block;
         line-height: 1;
 
         &:not(:last-child) {
-          border-right: 1px solid #ddd;
+          border-right: 1px solid transparent;
+          border-right-color: _lighter($_color-gray); // For IE11
+          border-right-color: _var-lighter-color-gray();
           padding-right: 1em;
         }
 
