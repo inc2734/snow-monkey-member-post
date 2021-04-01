@@ -23,28 +23,42 @@ define( 'SNOW_MONKEY_MEMBER_POST_PATH', untrailingslashit( plugin_dir_path( __FI
 
 class Bootstrap {
 
+	/**
+	 * Constructor.
+	 */
 	public function __construct() {
 		add_action( 'plugins_loaded', [ $this, '_bootstrap' ] );
 	}
 
+	/**
+	 * Plugins loaded.
+	 */
 	public function _bootstrap() {
 		load_plugin_textdomain( 'snow-monkey-member-post', false, basename( __DIR__ ) . '/languages' );
 
-		add_action( 'init', array( $this, '_add_attributes_to_blocks' ), 11 );
+		add_action( 'init', [ $this, '_add_attributes_to_blocks' ], 11 );
 		add_action( 'init', [ $this, '_activate_autoupdate' ] );
 
 		$theme = wp_get_theme( get_template() );
 		if ( 'snow-monkey' !== $theme->template && 'snow-monkey/resources' !== $theme->template ) {
-			add_action( 'admin_notices', [ $this, '_admin_notice_no_snow_monkey' ] );
+			add_action(
+				'admin_notices',
+				function() {
+					?>
+						<div class="notice notice-warning is-dismissible">
+							<p>
+								<?php esc_html_e( '[Snow Monkey Member Post] Needs the Snow Monkey.', 'snow-monkey-member-post' ); ?>
+							</p>
+						</div>
+					<?php
+				}
+			);
 			return;
 		}
 
-		foreach ( glob( SNOW_MONKEY_MEMBER_POST_PATH . '/App/Setup/*.php' ) as $file ) {
-			$class_name = '\\Snow_Monkey\\Plugin\\MemberPost\\App\\Setup\\' . str_replace( '.php', '', basename( $file ) );
-			if ( class_exists( $class_name ) ) {
-				new $class_name();
-			}
-		}
+		new App\Setup\Assets();
+		new App\Setup\CurrentUser();
+		new App\Setup\TextDomain();
 
 		new App\Controller\Post();
 		new App\Controller\Edit();
@@ -59,8 +73,15 @@ class Bootstrap {
 		}
 	}
 
+	/**
+	 * Filters the content of a single block.
+	 *
+	 * @param string $content The block content about to be appended.
+	 * @param array  $block   The full block, including name and attributes.
+	 * @return strinig
+	 */
 	public function _restricted( $content, $block ) {
-		$attributes = $block['attrs'];
+		$attributes    = $block['attrs'];
 		$is_restricted = isset( $attributes['smmpIsRestrected'] ) ? $attributes['smmpIsRestrected'] : false;
 		if ( $is_restricted ) {
 			$post = get_post();
@@ -82,7 +103,7 @@ class Bootstrap {
 			foreach ( glob( $dir . '/attributes.json' ) as $file ) {
 				$_attributes = file_get_contents( $file );
 				$_attributes = json_decode( $_attributes, true );
-				$attributes = array_merge( $attributes, $_attributes );
+				$attributes  = array_merge( $attributes, $_attributes );
 			}
 		}
 
@@ -109,16 +130,6 @@ class Bootstrap {
 				'homepage' => 'https://snow-monkey.2inc.org',
 			]
 		);
-	}
-
-	public function _admin_notice_no_snow_monkey() {
-		?>
-		<div class="notice notice-warning is-dismissible">
-			<p>
-				<?php esc_html_e( '[Snow Monkey Member Post] Needs the Snow Monkey.', 'snow-monkey-member-post' ); ?>
-			</p>
-		</div>
-		<?php
 	}
 }
 

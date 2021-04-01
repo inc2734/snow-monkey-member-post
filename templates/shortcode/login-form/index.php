@@ -8,6 +8,15 @@
 use Snow_Monkey\Plugin\MemberPost\App\Config;
 use Snow_Monkey\Plugin\MemberPost\App\View;
 
+$args = wp_parse_args(
+	// phpcs:disable VariableAnalysis.CodeAnalysis.VariableAnalysis.UndefinedVariable
+	$args,
+	// phpcs:enable
+	[
+		'redirect_to' => '',
+	]
+);
+
 if ( filter_input( INPUT_GET, 'login_error_codes' ) ) {
 	View::render( 'shortcode/login-form/error' );
 }
@@ -37,7 +46,7 @@ if ( filter_input( INPUT_GET, 'login_error_codes' ) ) {
 			<button type="submit" name="wp-submit" id="wp-submit" class="c-btn">
 				<?php esc_attr_e( 'Log In', 'snow-monkey-member-post' ); ?>
 			</button>
-			<input type="hidden" name="redirect_to" value="<?php echo esc_attr( $redirect_to ); ?>">
+			<input type="hidden" name="redirect_to" value="<?php echo esc_attr( $args['redirect_to'] ); ?>">
 		</div>
 		<div class="c-row__col c-row__col--1-1">
 			<ul class="smmp-login-form__nav">

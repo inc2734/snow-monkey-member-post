@@ -11,6 +11,9 @@ use Snow_Monkey\Plugin\MemberPost\App\Config;
 
 class Edit {
 
+	/**
+	 * Constructor.
+	 */
 	public function __construct() {
 		add_filter( 'display_post_states', [ $this, '_display_post_states' ], 10, 2 );
 	}
@@ -18,8 +21,8 @@ class Edit {
 	/**
 	 * Add post status comment
 	 *
-	 * @param array $post_states
-	 * @param WP_Post $post
+	 * @param array   $post_states The post status.
+	 * @param WP_Post $post        The post object.
 	 * @return array
 	 */
 	public function _display_post_states( $post_states, $post ) {

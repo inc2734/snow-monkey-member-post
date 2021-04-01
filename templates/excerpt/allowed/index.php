@@ -5,4 +5,13 @@
  * @license GPL-2.0+
  */
 
-echo wp_kses_post( $content );
+$args = wp_parse_args(
+	// phpcs:disable VariableAnalysis.CodeAnalysis.VariableAnalysis.UndefinedVariable
+	$args,
+	// phpcs:enable
+	[
+		'content' => '',
+	]
+);
+
+echo wp_kses_post( $args['content'] );

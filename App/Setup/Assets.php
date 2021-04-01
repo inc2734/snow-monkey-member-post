@@ -9,12 +9,18 @@ namespace Snow_Monkey\Plugin\MemberPost\App\Setup;
 
 class Assets {
 
+	/**
+	 * Constructor.
+	 */
 	public function __construct() {
 		add_action( 'wp_enqueue_scripts', [ $this, '_enqueue_style' ] );
 		add_action( 'enqueue_block_editor_assets', [ $this, '_enqueue_block_editor_extension' ], 9 );
 		add_action( 'enqueue_block_editor_assets', [ $this, '_enqueue_block_editor_assets' ] );
 	}
 
+	/**
+	 * Enqueue assets.
+	 */
 	public function _enqueue_style() {
 		wp_enqueue_style(
 			'snow-monkey-member-post',

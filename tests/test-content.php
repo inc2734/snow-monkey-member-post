@@ -46,7 +46,7 @@ class ContentTest extends WP_UnitTestCase {
 		update_post_meta( $post->ID, Config::get( 'restriction-key' ), 1 );
 		$content = $this->_get_the_content( $post );
 		$this->assertEquals(
-			'before Viewing is restricted.Please login to view this page.',
+			'Viewing is restricted.Please login to view this page.',
 			trim( preg_replace( '/\s+/', ' ' ,strip_tags( $content ) ) )
 		);
 	}

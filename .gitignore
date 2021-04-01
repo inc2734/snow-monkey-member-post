@@ -4,3 +4,7 @@ node_modules/
 snow-monkey-member-post.zip
 snow-monkey-member-post
 dist/
+.wp-env.override.json
+/.themes/
+/uploads/
+/sql/

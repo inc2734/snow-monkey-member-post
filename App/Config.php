@@ -19,7 +19,7 @@ class Config {
 	/**
 	 * Retrun specific config data
 	 *
-	 * @param string $key
+	 * @param string $key The config key.
 	 * @return mixed
 	 */
 	public static function get( $key ) {

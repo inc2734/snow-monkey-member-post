@@ -7,8 +7,21 @@
 
 use Snow_Monkey\Plugin\MemberPost\App\Helper;
 
-$extended = get_extended( $post->post_content );
-$main = preg_replace( '/<!-- more -->/', '', $extended['main'] );
+$args = wp_parse_args(
+	// phpcs:disable VariableAnalysis.CodeAnalysis.VariableAnalysis.UndefinedVariable
+	$args,
+	// phpcs:enable
+	[
+		'post' => false,
+	]
+);
+
+if ( ! $args['post'] ) {
+	return;
+}
+
+$extended = get_extended( $args['post']->post_content );
+$main     = preg_replace( '/<!-- more -->/', '', $extended['main'] );
 
 if ( ! empty( $main ) && ! empty( $extended['extended'] ) ) {
 	/**
@@ -26,7 +39,7 @@ if ( ! empty( $main ) && ! empty( $extended['extended'] ) ) {
 	 * @param string
 	 * @return string
 	 */
-	$message = apply_filters( 'snow_monkey_member_post_restricted_excerpt_message', $message, $post );
+	$message = apply_filters( 'snow_monkey_member_post_restricted_excerpt_message', $message, $args['post'] );
 }
 
 echo wp_kses_post( $message );

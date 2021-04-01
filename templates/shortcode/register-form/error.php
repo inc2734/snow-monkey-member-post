@@ -11,11 +11,11 @@ $error_codes = explode( ',', $error_codes );
 <div class="smmp-alert smmp-alert--warning">
 	<?php
 	$error_messages = [];
-	if ( in_array( 'username_exists', $error_codes ) ) {
+	if ( in_array( 'username_exists', $error_codes, true ) ) {
 		$error_messages[] = esc_html__( 'Sorry, that username already exists!', 'snow-monkey-member-post' );
 	}
 
-	if ( in_array( 'email_exists', $error_codes ) ) {
+	if ( in_array( 'email_exists', $error_codes, true ) ) {
 		$error_messages[] = esc_html__( 'This email is already registered, please choose another one.', 'snow-monkey-member-post' );
 	}
 

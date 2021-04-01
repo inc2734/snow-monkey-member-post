@@ -12,9 +12,10 @@ use Inc2734\WP_Plugin_View_Controller\Bootstrap;
 class View {
 
 	/**
-	 * Renter template
+	 * Render template.
 	 *
-	 * @param string $slug
+	 * @param string $slug The template slug.
+	 * @param string $args The template args.
 	 * @return void
 	 */
 	public static function render( $slug, $args = [] ) {
@@ -38,24 +39,25 @@ class View {
 	}
 
 	/**
-	 * get_extended() for filtered content
+	 * get_extended() for filtered content.
 	 *
 	 * @see https://developer.wordpress.org/reference/functions/get_extended/
-	 * @param string $content
+	 *
+	 * @param string $content The content.
 	 * @return array
 	 */
 	public static function get_extended( $content ) {
 		if ( preg_match( '@<span id="more-(\d+)"><\/span>@', $content, $matches ) ) {
 			list( $main, $extended ) = explode( $matches[0], $content, 2 );
-			$more_text = $matches[1];
+			$more_text               = $matches[1];
 		} else {
 			$main      = $content;
 			$extended  = '';
 			$more_text = '';
 		}
 
-		$main = preg_replace( '/^[\s]*(.*)[\s]*$/', '\\1', $main );
-		$extended = preg_replace( '/^[\s]*(.*)[\s]*$/', '\\1', $extended );
+		$main      = preg_replace( '/^[\s]*(.*)[\s]*$/', '\\1', $main );
+		$extended  = preg_replace( '/^[\s]*(.*)[\s]*$/', '\\1', $extended );
 		$more_text = preg_replace( '/^[\s]*(.*)[\s]*$/', '\\1', $more_text );
 
 		return [

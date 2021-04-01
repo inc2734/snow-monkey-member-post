@@ -8,6 +8,10 @@
 namespace Snow_Monkey\Plugin\MemberPost\App\Setup;
 
 class TextDomain {
+
+	/**
+	 * Constructor.
+	 */
 	public function __construct() {
 		load_plugin_textdomain( 'snow-monkey-member-post', false, basename( SNOW_MONKEY_MEMBER_POST_PATH ) . '/languages' );
 		add_filter( 'load_textdomain_mofile', [ $this, '_load_textdomain_mofile' ], 10, 2 );
@@ -15,10 +19,11 @@ class TextDomain {
 	}
 
 	/**
+	 * Filters MO file path for loading translations for a specific text domain.
 	 * When local .mo file exists, load this.
 	 *
-	 * @param string $mofile
-	 * @param string $domain
+	 * @param string $mofile Path to the MO file.
+	 * @param string $domain Text domain. Unique identifier for retrieving translated strings.
 	 * @return string
 	 */
 	public function _load_textdomain_mofile( $mofile, $domain ) {

@@ -7,7 +7,17 @@
 
 use Snow_Monkey\Plugin\MemberPost\App\View;
 
-$extended = View::get_extended( $content );
+$args = wp_parse_args(
+	// phpcs:disable VariableAnalysis.CodeAnalysis.VariableAnalysis.UndefinedVariable
+	$args,
+	// phpcs:enable
+	[
+		'post'    => false,
+		'content' => '',
+	]
+);
+
+$extended = View::get_extended( $args['content'] );
 echo $extended['main']; // XSS ok.
 
 if ( empty( $extended['extended'] ) ) {
@@ -22,7 +32,7 @@ $message = __( 'From here on, it is content for members only.', 'snow-monkey-mem
  * @param string $message
  * @return string
  */
-$message = apply_filters( 'snow_monkey_member_post_allowed_content_message', $message, $post );
+$message = apply_filters( 'snow_monkey_member_post_allowed_content_message', $message, $args['post'] );
 
 View::render( 'content/allowed/message', [ 'message' => $message ] );
 

@@ -7,7 +7,17 @@
 
 use Snow_Monkey\Plugin\MemberPost\App\View;
 
-$extended = View::get_extended( $content );
+$args = wp_parse_args(
+	// phpcs:disable VariableAnalysis.CodeAnalysis.VariableAnalysis.UndefinedVariable
+	$args,
+	// phpcs:enable
+	[
+		'post'    => false,
+		'content' => '',
+	]
+);
+
+$extended = View::get_extended( $args['content'] );
 if ( ! empty( $extended['extended'] ) ) {
 	echo $extended['main']; // XSS ok.
 }
@@ -21,6 +31,6 @@ $message .= __( 'Please login to view this page.', 'snow-monkey-member-post' );
  * @param string $message
  * @return string
  */
-$message = apply_filters( 'snow_monkey_member_post_restricted_content_message', $message, $post );
+$message = apply_filters( 'snow_monkey_member_post_restricted_content_message', $message, $args['post'] );
 
 View::render( 'content/disallowed/message', [ 'message' => $message ] );

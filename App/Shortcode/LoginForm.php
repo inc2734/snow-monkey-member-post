@@ -12,9 +12,23 @@ use Snow_Monkey\Plugin\MemberPost\App\View;
 
 class LoginForm {
 
+	/**
+	 * Whether in view or not.
+	 *
+	 * @var boolean
+	 */
 	protected $in_the_view = false;
+
+	/**
+	 * The view template slug.
+	 *
+	 * @var string
+	 */
 	protected $view_slug;
 
+	/**
+	 * Constructor.
+	 */
 	public function __construct() {
 		add_filter( 'inc2734_wp_view_controller_view', [ $this, '_set_in_the_view' ] );
 
@@ -25,15 +39,26 @@ class LoginForm {
 		add_action( 'inc2734_wp_view_controller_get_template_part_post_render', [ $this, '_unset_in_the_view' ] );
 
 		add_shortcode( 'snow_monkey_member_post_login_form', [ $this, '_view' ] );
-		add_filter( 'authenticate', [ $this, '_redirect' ], 101, 3 );
+		add_filter( 'authenticate', [ $this, '_redirect' ], 101 );
 	}
 
+	/**
+	 * Set $this->in_the_view.
+	 *
+	 * @param string $view The view template.
+	 * @return string
+	 */
 	public function _set_in_the_view( $view ) {
 		$this->in_the_view = true;
 		$this->view_slug   = $view['slug'];
 		return $view;
 	}
 
+	/**
+	 * Unset $this->in_the_view.
+	 *
+	 * @param array $args The template args.
+	 */
 	public function _unset_in_the_view( $args ) {
 		if ( $this->view_slug === $args['slug'] ) {
 			$this->in_the_view = false;
@@ -43,9 +68,10 @@ class LoginForm {
 	/**
 	 * Register shortcode
 	 *
-	 * @param array $atts
-	 * @return string
 	 * @see https://core.trac.wordpress.org/browser/trunk/src/wp-login.php
+	 *
+	 * @param array $atts Array of attributes.
+	 * @return string
 	 */
 	public function _view( $atts ) {
 		if ( is_user_logged_in() && $this->in_the_view ) {
@@ -70,12 +96,10 @@ class LoginForm {
 	/**
 	 * Authenticates a user using the username and password.
 	 *
-	 * @param WP_User|WP_Error|null $user
-	 * @param string $username
-	 * @param string $password
+	 * @param WP_User|WP_Error|null $user WP_User if the user is authenticated. WP_Error or null otherwise.
 	 * @return WP_User|WP_Error
 	 */
-	public function _redirect( $user, $username, $password ) {
+	public function _redirect( $user ) {
 		$nonce_key = Config::get( 'login-form-nonce-key' );
 		$nonce     = filter_input( INPUT_POST, $nonce_key );
 		if ( ! $nonce ) {

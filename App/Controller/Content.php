@@ -12,6 +12,9 @@ use Snow_Monkey\Plugin\MemberPost\App\View;
 
 class Content {
 
+	/**
+	 * Constructor.
+	 */
 	public function __construct() {
 		add_filter( 'the_content', [ $this, '_restrict_content' ], 9 );
 	}
@@ -19,7 +22,7 @@ class Content {
 	/**
 	 * Restrict content
 	 *
-	 * @param string $content
+	 * @param string $content The content.
 	 * @return string
 	 */
 	public function _restrict_content( $content ) {

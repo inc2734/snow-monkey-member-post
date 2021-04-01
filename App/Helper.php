@@ -14,7 +14,7 @@ class Helper {
 	/**
 	 * Return true when the post have restriction meta
 	 *
-	 * @param int $post_id
+	 * @param int $post_id The post ID.
 	 * @return boolean
 	 */
 	public static function has_restriction_meta( $post_id ) {
@@ -28,11 +28,11 @@ class Helper {
 	/**
 	 * Return true when the post is restricted
 	 *
-	 * @param int $post_id
+	 * @param int $post_id The post ID.
 	 * @return boolean
 	 */
 	public static function is_restricted( $post_id ) {
-		$return = true;
+		$return               = true;
 		$has_restriction_meta = static::has_restriction_meta( $post_id );
 
 		if ( ! $has_restriction_meta ) {

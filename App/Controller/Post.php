@@ -12,6 +12,9 @@ use Snow_Monkey\Plugin\MemberPost\App\View;
 
 class Post {
 
+	/**
+	 * Constructor.
+	 */
 	public function __construct() {
 		if ( ! current_user_can( Config::get( 'restriction-capability' ) ) ) {
 			return;
@@ -24,7 +27,7 @@ class Post {
 	/**
 	 * Add meta box
 	 *
-	 * @param string $post_type
+	 * @param string $post_type The post type.
 	 * @return void
 	 */
 	public function _add_meta_boxes( $post_type ) {
@@ -36,7 +39,7 @@ class Post {
 		 */
 		$active_post_types = apply_filters( 'snow_monkey_member_post_active_post_types', [ 'post' ] );
 
-		if ( ! in_array( $post_type, $active_post_types ) ) {
+		if ( ! in_array( $post_type, $active_post_types, true ) ) {
 			return;
 		}
 
@@ -52,7 +55,7 @@ class Post {
 	/**
 	 * Update restriction meta value
 	 *
-	 * @param int $post_id
+	 * @param int $post_id The post ID.
 	 * @return void
 	 */
 	public function _save_post( $post_id ) {

@@ -12,17 +12,21 @@ use Snow_Monkey\Plugin\MemberPost\App\View;
 
 class RegisterForm {
 
+	/**
+	 * Constructor.
+	 */
 	public function __construct() {
 		add_shortcode( 'snow_monkey_member_post_register_form', [ $this, '_view' ] );
-		add_filter( 'registration_errors', [ $this, '_redirect' ], 10000, 3 );
+		add_filter( 'registration_errors', [ $this, '_redirect' ], 10000 );
 	}
 
 	/**
 	 * Register shortcode
 	 *
-	 * @param array $atts
-	 * @return string
 	 * @see https://core.trac.wordpress.org/browser/trunk/src/wp-login.php
+	 *
+	 * @param array $atts Array of attributes.
+	 * @return string
 	 */
 	public function _view( $atts ) {
 		if ( is_user_logged_in() ) {
@@ -56,12 +60,10 @@ class RegisterForm {
 	/**
 	 * Filters the errors encountered when a new user is being registered.
 	 *
-	 * @param WP_Error $errors
-	 * @param string $sanitized_user_login
-	 * @param string $user_email
+	 * @param WP_Error $errors A WP_Error object containing any errors encountered during registration.
 	 * @return WP_Error
 	 */
-	public function _redirect( $errors, $sanitized_user_login, $user_email ) {
+	public function _redirect( $errors ) {
 		$nonce_key = Config::get( 'register-form-nonce-key' );
 		$nonce     = filter_input( INPUT_POST, $nonce_key );
 		if ( ! $nonce ) {
