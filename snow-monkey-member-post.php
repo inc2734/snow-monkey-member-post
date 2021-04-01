@@ -83,10 +83,15 @@ class Bootstrap {
 	public function _restricted( $content, $block ) {
 		$attributes    = $block['attrs'];
 		$is_restricted = isset( $attributes['smmpIsRestrected'] ) ? $attributes['smmpIsRestrected'] : false;
+
 		if ( $is_restricted ) {
-			$post = get_post();
-			if ( $post && Helper::is_restricted( $post->ID ) ) {
-				return;
+			if ( Helper::is_restricted_member() ) {
+				$args = [
+					'post' => get_post(),
+				];
+				ob_start();
+				App\View::render( 'block/disallowed/index', $args );
+				return ob_get_clean();
 			}
 		}
 		return $content;

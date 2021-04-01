@@ -26,21 +26,36 @@ class Helper {
 	}
 
 	/**
+	 * Return true when the member is restricted.
+	 *
+	 * @return boolean
+	 */
+	public static function is_restricted_member() {
+		/**
+		 * You can customize whether the content is restricted or not.
+		 *
+		 * @param boolean $return
+		 * @param boolean $has_restriction_meta
+		 * @param WP_Post $post
+		 * @return boolean
+		 */
+		return apply_filters(
+			'snow_monkey_member_post_is_restricted_member',
+			! is_user_logged_in()
+		);
+	}
+
+	/**
 	 * Return true when the post is restricted
 	 *
 	 * @param int $post_id The post ID.
 	 * @return boolean
 	 */
 	public static function is_restricted( $post_id ) {
-		$return               = true;
 		$has_restriction_meta = static::has_restriction_meta( $post_id );
 
 		if ( ! $has_restriction_meta ) {
 			return false;
-		}
-
-		if ( is_user_logged_in() ) {
-			$return = false;
 		}
 
 		/**
@@ -49,7 +64,13 @@ class Helper {
 		 * @param boolean $return
 		 * @param boolean $has_restriction_meta
 		 * @param WP_Post $post
+		 * @return boolean
 		 */
-		return apply_filters( 'snow_monkey_member_post_is_restricted', $return, $has_restriction_meta, get_post( $post_id ) );
+		return apply_filters(
+			'snow_monkey_member_post_is_restricted',
+			static::is_restricted_member(),
+			$has_restriction_meta,
+			get_post( $post_id )
+		);
 	}
 }

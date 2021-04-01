@@ -1,15 +1,15 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Snow Monkey Member Post\n"
-"POT-Creation-Date: 2020-04-17 10:31+0900\n"
-"PO-Revision-Date: 2020-04-17 10:31+0900\n"
+"POT-Creation-Date: 2021-04-02 01:08+0900\n"
+"PO-Revision-Date: 2021-04-02 01:08+0900\n"
 "Last-Translator: inc2734 <inc@2inc.org>\n"
 "Language-Team: inc2734 <inc@2inc.org>\n"
 "Language: ja_JP\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.4\n"
+"X-Generator: Poedit 2.4.2\n"
 "X-Poedit-Basepath: ..\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
@@ -25,28 +25,41 @@ msgstr ""
 "X-Poedit-SearchPathExcluded-3: tests\n"
 "X-Poedit-SearchPathExcluded-4: languages\n"
 
-#: App/Controller/Edit.php:27
-msgid "Members only"
-msgstr "メンバー限定"
-
 #. Plugin Name of the plugin/theme
-#: App/Controller/Post.php:45 src/extension/restrected/editor.js:71
+#: src/extension/restrected/editor.js:71 App/Controller/Post.php:48
 msgid "Snow Monkey Member Post"
 msgstr "Snow Monkey Member Post"
 
-#: snow-monkey-member-post.php:81
+#: src/extension/restrected/editor.js:80
+msgid "Show this block for members only"
+msgstr "このブロックをメンバー限定表示にする"
+
+#: App/Controller/Edit.php:30
+msgid "Members only"
+msgstr "メンバー限定"
+
+#: snow-monkey-member-post.php:50
 msgid "[Snow Monkey Member Post] Needs the Snow Monkey."
 msgstr "[Snow Monkey Member Post] Snow Monkeyが必要です。"
 
-#: templates/content/allowed/index.php:17
+#: templates/block/disallowed/index.php:19
+msgid "The display of this section is restricted."
+msgstr "この部分の表示は制限されています。"
+
+#: templates/block/disallowed/index.php:20
+msgid "Please login to view this section."
+msgstr "この部分を表示するにはログインしてください。"
+
+#: templates/content/allowed/index.php:27
 msgid "From here on, it is content for members only."
 msgstr "ここから先はメンバー限定コンテンツです。"
 
-#: templates/content/disallowed/index.php:15 templates/excerpt/index.php:21
+#: templates/content/disallowed/index.php:25
+#: templates/excerpt/disallowed/index.php:34 templates/excerpt/index.php:44
 msgid "Viewing is restricted."
 msgstr "表示は制限されています。"
 
-#: templates/content/disallowed/index.php:16
+#: templates/content/disallowed/index.php:26
 msgid "Please login to view this page."
 msgstr "このページを表示するにはログインしてください。"
 
@@ -58,31 +71,31 @@ msgstr "メンバー限定でこの記事を表示する"
 msgid "The username or password is incorrect."
 msgstr "ユーザー名、またはパスワードが正しくありません。"
 
-#: templates/shortcode/login-form/index.php:21
+#: templates/shortcode/login-form/index.php:30
 msgid "Username or Email Address"
 msgstr "ユーザー名またはメールアドレス"
 
-#: templates/shortcode/login-form/index.php:29
+#: templates/shortcode/login-form/index.php:38
 msgid "Password"
 msgstr "パスワード"
 
-#: templates/shortcode/login-form/index.php:38
+#: templates/shortcode/login-form/index.php:47
 msgid "Log In"
 msgstr "ログイン"
 
-#: templates/shortcode/login-form/index.php:47
+#: templates/shortcode/login-form/index.php:56
 msgid "Remember Me"
 msgstr "ログイン状態を保存する"
 
-#: templates/shortcode/login-form/index.php:52
+#: templates/shortcode/login-form/index.php:61
 msgid "Lost your password?"
 msgstr "パスワードをお忘れですか ?"
 
-#: templates/shortcode/logout/index.php:10
+#: templates/shortcode/logout/index.php:19
 msgid "Are you attempting to log out?"
 msgstr "ログアウトしますか？"
 
-#: templates/shortcode/logout/index.php:10
+#: templates/shortcode/logout/index.php:19
 msgid "Log out"
 msgstr "ログアウト"
 
@@ -100,19 +113,19 @@ msgstr ""
 msgid "The username or email address is incorrect."
 msgstr "ユーザー名またはメールアドレスが正しくありません。"
 
-#: templates/shortcode/register-form/index.php:21
+#: templates/shortcode/register-form/index.php:30
 msgid "Username"
 msgstr "ユーザー名"
 
-#: templates/shortcode/register-form/index.php:29
+#: templates/shortcode/register-form/index.php:38
 msgid "Email"
 msgstr "メールアドレス"
 
-#: templates/shortcode/register-form/index.php:38
+#: templates/shortcode/register-form/index.php:47
 msgid "Register"
 msgstr "登録"
 
-#: templates/shortcode/register-form/index.php:45
+#: templates/shortcode/register-form/index.php:54
 msgid "Registration confirmation will be emailed to you."
 msgstr "登録確認のメールが送信されます。"
 
@@ -123,10 +136,6 @@ msgstr "登録が完了しました。メールを確認してください。"
 #: templates/shortcode/register-form/restricted.php:10
 msgid "Currently, user registration is restricted."
 msgstr "現在、ユーザー登録は制限されています。"
-
-#: src/extension/restrected/editor.js:80
-msgid "Show this block for members only"
-msgstr "このブロックをメンバー限定表示にする"
 
 #. Description of the plugin/theme
 msgid ""
