@@ -54,10 +54,6 @@ class Helper {
 	public static function is_restricted( $post_id ) {
 		$has_restriction_meta = static::has_restriction_meta( $post_id );
 
-		if ( ! $has_restriction_meta ) {
-			return false;
-		}
-
 		/**
 		 * You can customize whether the content is restricted or not.
 		 *
@@ -68,7 +64,7 @@ class Helper {
 		 */
 		return apply_filters(
 			'snow_monkey_member_post_is_restricted',
-			static::is_restricted_member(),
+			$has_restriction_meta && static::is_restricted_member(),
 			$has_restriction_meta,
 			get_post( $post_id )
 		);
