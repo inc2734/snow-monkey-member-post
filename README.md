@@ -58,6 +58,21 @@ add_filter(
 );
 ```
 
+### snow_monkey_member_post_is_restricted_member
+```
+/**
+ * You can customize whether the member is restricted or not.
+ *
+ * @return boolean
+ */
+add_filter(
+  'snow_monkey_member_post_is_restricted_member',
+  function( $return ) {
+    return $return;
+  }
+);
+```
+
 ### snow_monkey_member_post_is_restricted
 ```
 /**
@@ -66,6 +81,7 @@ add_filter(
  * @param boolean $return
  * @param boolean $has_restriction_meta
  * @param WP_Post $post
+ * @return boolean
  */
 add_filter(
   'snow_monkey_member_post_is_restricted',

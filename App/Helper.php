@@ -32,7 +32,7 @@ class Helper {
 	 */
 	public static function is_restricted_member() {
 		/**
-		 * You can customize whether the content is restricted or not.
+		 * You can customize whether the member is restricted or not.
 		 *
 		 * @param boolean $return
 		 * @param boolean $has_restriction_meta
