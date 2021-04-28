@@ -20,9 +20,10 @@ $message  = __( 'The display of this section is restricted.', 'snow-monkey-membe
 $message .= __( 'Please login to view this section.', 'snow-monkey-member-post' );
 
 /**
- * You can customize the messages that appear on unauthorized content.
+ * You can customize the messages that appear on unauthorized block.
  *
  * @param string $message
+ * @param WP_Post $post
  * @return string
  */
 $message = apply_filters( 'snow_monkey_member_post_restricted_block_message', $message, $args['post'] );

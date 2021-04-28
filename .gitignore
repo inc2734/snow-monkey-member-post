@@ -6,5 +6,4 @@ snow-monkey-member-post
 dist/
 .wp-env.override.json
 /.themes/
-/uploads/
-/sql/
+/.export/*
