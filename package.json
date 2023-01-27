@@ -3,7 +3,7 @@
   "license": "GPL-2.0+",
   "devDependencies": {
     "@wordpress/browserslist-config": "^4.1.1",
-    "@wordpress/env": "4.2.2",
+    "@wordpress/env": "4.9.0",
     "autoprefixer": "^10.4.2",
     "cssnano": "^5.0.17",
     "node-sass": "^7.0.1",
