@@ -146,6 +146,7 @@ class LoginForm {
 		$path = filter_input( INPUT_SERVER, 'REQUEST_URI' );
 		$path = remove_query_arg( 'login_error_codes', $path );
 		$path = remove_query_arg( 'register_error_codes', $path );
+		var_dump( $path );
 		return home_url( $path );
 	}
 
