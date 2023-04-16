@@ -9,9 +9,9 @@ $args = wp_parse_args(
 	// phpcs:disable VariableAnalysis.CodeAnalysis.VariableAnalysis.UndefinedVariable
 	$args,
 	// phpcs:enable
-	[
+	array(
 		'redirect_to' => '',
-	]
+	)
 );
 ?>
 

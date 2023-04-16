@@ -16,8 +16,8 @@ class RegisterForm {
 	 * Constructor.
 	 */
 	public function __construct() {
-		add_shortcode( 'snow_monkey_member_post_register_form', [ $this, '_view' ] );
-		add_filter( 'registration_errors', [ $this, '_redirect' ], 10000 );
+		add_shortcode( 'snow_monkey_member_post_register_form', array( $this, '_view' ) );
+		add_filter( 'registration_errors', array( $this, '_redirect' ), 10000 );
 	}
 
 	/**
@@ -40,9 +40,9 @@ class RegisterForm {
 		}
 
 		$atts = shortcode_atts(
-			[
+			array(
 				'redirect_to' => $this->_get_current_url(),
-			],
+			),
 			$atts
 		);
 

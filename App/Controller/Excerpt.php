@@ -16,7 +16,7 @@ class Excerpt {
 	 * Constructor.
 	 */
 	public function __construct() {
-		add_filter( 'the_excerpt', [ $this, '_restrict_excerpt' ], 9 );
+		add_filter( 'the_excerpt', array( $this, '_restrict_excerpt' ), 9 );
 	}
 
 	/**
@@ -32,10 +32,10 @@ class Excerpt {
 			return $content;
 		}
 
-		$args = [
+		$args = array(
 			'post'    => $post,
 			'content' => $content,
-		];
+		);
 
 		ob_start();
 

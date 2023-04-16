@@ -11,9 +11,9 @@ $args = wp_parse_args(
 	// phpcs:disable VariableAnalysis.CodeAnalysis.VariableAnalysis.UndefinedVariable
 	$args,
 	// phpcs:enable
-	[
+	array(
 		'post' => false,
-	]
+	)
 );
 
 $message  = __( 'The display of this section is restricted.', 'snow-monkey-member-post' );
@@ -28,4 +28,4 @@ $message .= __( 'Please login to view this section.', 'snow-monkey-member-post' 
  */
 $message = apply_filters( 'snow_monkey_member_post_restricted_block_message', $message, $args['post'] );
 
-View::render( 'block/disallowed/message', [ 'message' => $message ] );
+View::render( 'block/disallowed/message', array( 'message' => $message ) );

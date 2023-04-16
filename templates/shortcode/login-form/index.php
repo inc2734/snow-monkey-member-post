@@ -12,9 +12,9 @@ $args = wp_parse_args(
 	// phpcs:disable VariableAnalysis.CodeAnalysis.VariableAnalysis.UndefinedVariable
 	$args,
 	// phpcs:enable
-	[
+	array(
 		'redirect_to' => '',
-	]
+	)
 );
 
 if ( filter_input( INPUT_GET, 'login_error_codes' ) ) {
@@ -26,7 +26,7 @@ if ( class_exists( '\XO_Security' ) ) {
 	$xo_security_option = get_option( 'xo_security_options' );
 	if ( ! empty( $xo_security_option['login_page'] ) && ! empty( $xo_security_option['login_page_name'] ) ) {
 		$login_page_name = $xo_security_option['login_page_name'];
-		$action = str_replace( 'wp-login.php', $login_page_name . '.php', $action );
+		$action          = str_replace( 'wp-login.php', $login_page_name . '.php', $action );
 	}
 }
 ?>

@@ -18,12 +18,12 @@ class View {
 	 * @param string $args The template args.
 	 * @return void
 	 */
-	public static function render( $slug, $args = [] ) {
+	public static function render( $slug, $args = array() ) {
 		$bootstrap = new Bootstrap(
-			[
+			array(
 				'prefix' => 'snow_monkey_member_post_',
 				'path'   => SNOW_MONKEY_MEMBER_POST_PATH . '/templates/',
-			]
+			)
 		);
 
 		add_filter(
@@ -60,10 +60,10 @@ class View {
 		$extended  = preg_replace( '/^[\s]*(.*)[\s]*$/', '\\1', $extended );
 		$more_text = preg_replace( '/^[\s]*(.*)[\s]*$/', '\\1', $more_text );
 
-		return [
+		return array(
 			'main'      => $main,
 			'extended'  => $extended,
 			'more_text' => $more_text,
-		];
+		);
 	}
 }

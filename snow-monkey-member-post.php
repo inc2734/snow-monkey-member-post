@@ -5,7 +5,7 @@
  * Version: 6.0.2
  * Tested up to: 5.9
  * Requires at least: 5.5
- * Requires PHP: 5.6
+ * Requires PHP: 7.4
  *
  * @package snow-monkey-member-post
  * @author inc2734
@@ -27,7 +27,7 @@ class Bootstrap {
 	 * Constructor.
 	 */
 	public function __construct() {
-		add_action( 'plugins_loaded', [ $this, '_bootstrap' ] );
+		add_action( 'plugins_loaded', array( $this, '_bootstrap' ) );
 	}
 
 	/**
@@ -36,8 +36,8 @@ class Bootstrap {
 	public function _bootstrap() {
 		load_plugin_textdomain( 'snow-monkey-member-post', false, basename( __DIR__ ) . '/languages' );
 
-		add_action( 'init', [ $this, '_add_attributes_to_blocks' ], 11 );
-		add_action( 'init', [ $this, '_activate_autoupdate' ] );
+		add_action( 'init', array( $this, '_add_attributes_to_blocks' ), 11 );
+		add_action( 'init', array( $this, '_activate_autoupdate' ) );
 
 		$theme = wp_get_theme( get_template() );
 		if ( 'snow-monkey' !== $theme->template && 'snow-monkey/resources' !== $theme->template ) {
@@ -69,7 +69,7 @@ class Bootstrap {
 		new App\Shortcode\RegisterForm();
 
 		if ( ! is_admin() ) {
-			add_action( 'render_block', [ $this, '_restricted' ], 10, 2 );
+			add_action( 'render_block', array( $this, '_restricted' ), 10, 2 );
 		}
 	}
 
@@ -86,9 +86,9 @@ class Bootstrap {
 
 		if ( $is_restricted ) {
 			if ( Helper::is_restricted_member() ) {
-				$args = [
+				$args = array(
 					'post' => get_post(),
-				];
+				);
 				ob_start();
 				App\View::render( 'block/disallowed/index', $args );
 				return ob_get_clean();
@@ -103,7 +103,7 @@ class Bootstrap {
 	 * @see https://github.com/Codeinwp/gutenberg-animation/blob/a0efe29a3ce023e0f562bb9a51d34b345431b642/class-gutenberg-animation.php#L105-L119
 	 */
 	public function _add_attributes_to_blocks() {
-		$attributes = [];
+		$attributes = array();
 		foreach ( glob( SNOW_MONKEY_MEMBER_POST_PATH . '/src/extension/*', GLOB_ONLYDIR ) as $dir ) {
 			foreach ( glob( $dir . '/attributes.json' ) as $file ) {
 				$_attributes = file_get_contents( $file );
@@ -131,9 +131,9 @@ class Bootstrap {
 			plugin_basename( __FILE__ ),
 			'inc2734',
 			'snow-monkey-member-post',
-			[
+			array(
 				'homepage' => 'https://snow-monkey.2inc.org',
-			]
+			)
 		);
 	}
 }

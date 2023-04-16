@@ -11,10 +11,10 @@ $args = wp_parse_args(
 	// phpcs:disable VariableAnalysis.CodeAnalysis.VariableAnalysis.UndefinedVariable
 	$args,
 	// phpcs:enable
-	[
+	array(
 		'post'    => false,
 		'content' => '',
-	]
+	)
 );
 
 $extended = View::get_extended( $args['content'] );
@@ -34,6 +34,6 @@ $message = __( 'From here on, it is content for members only.', 'snow-monkey-mem
  */
 $message = apply_filters( 'snow_monkey_member_post_allowed_content_message', $message, $args['post'] );
 
-View::render( 'content/allowed/message', [ 'message' => $message ] );
+View::render( 'content/allowed/message', array( 'message' => $message ) );
 
 echo $extended['extended']; // XSS ok.

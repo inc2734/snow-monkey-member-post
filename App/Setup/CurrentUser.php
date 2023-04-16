@@ -13,7 +13,7 @@ class CurrentUser {
 	 * Constructor.
 	 */
 	public function __construct() {
-		add_filter( 'rest_prepare_user', [ $this, '_rest_prepare_user' ], 10, 3 );
+		add_filter( 'rest_prepare_user', array( $this, '_rest_prepare_user' ), 10, 3 );
 	}
 
 	/**
@@ -38,7 +38,7 @@ class CurrentUser {
 			return $response;
 		}
 
-		$data = array_merge( $data, [ 'roles' => $user->roles ] );
+		$data = array_merge( $data, array( 'roles' => $user->roles ) );
 		$response->set_data( $data );
 
 		return $response;

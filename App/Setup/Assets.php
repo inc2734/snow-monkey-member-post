@@ -13,9 +13,9 @@ class Assets {
 	 * Constructor.
 	 */
 	public function __construct() {
-		add_action( 'wp_enqueue_scripts', [ $this, '_enqueue_style' ] );
-		add_action( 'enqueue_block_editor_assets', [ $this, '_enqueue_block_editor_extension' ], 9 );
-		add_action( 'enqueue_block_editor_assets', [ $this, '_enqueue_block_editor_assets' ] );
+		add_action( 'wp_enqueue_scripts', array( $this, '_enqueue_style' ) );
+		add_action( 'enqueue_block_editor_assets', array( $this, '_enqueue_block_editor_extension' ), 9 );
+		add_action( 'enqueue_block_editor_assets', array( $this, '_enqueue_block_editor_assets' ) );
 	}
 
 	/**
@@ -25,7 +25,7 @@ class Assets {
 		wp_enqueue_style(
 			'snow-monkey-member-post',
 			SNOW_MONKEY_MEMBER_POST_URL . '/dist/css/style.css',
-			[ \Framework\Helper::get_main_style_handle() ],
+			array( \Framework\Helper::get_main_style_handle() ),
 			filemtime( SNOW_MONKEY_MEMBER_POST_PATH . '/dist/css/style.css' )
 		);
 	}
@@ -55,7 +55,7 @@ class Assets {
 		wp_enqueue_style(
 			'snow-monkey-member-post@editor',
 			SNOW_MONKEY_MEMBER_POST_URL . '/dist/css/editor.css',
-			[],
+			array(),
 			filemtime( SNOW_MONKEY_MEMBER_POST_PATH . '/dist/css/editor.css' )
 		);
 	}

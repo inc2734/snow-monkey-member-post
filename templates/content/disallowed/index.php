@@ -11,10 +11,10 @@ $args = wp_parse_args(
 	// phpcs:disable VariableAnalysis.CodeAnalysis.VariableAnalysis.UndefinedVariable
 	$args,
 	// phpcs:enable
-	[
+	array(
 		'post'    => false,
 		'content' => '',
-	]
+	)
 );
 
 $extended = View::get_extended( $args['content'] );
@@ -33,4 +33,4 @@ $message .= __( 'Please login to view this page.', 'snow-monkey-member-post' );
  */
 $message = apply_filters( 'snow_monkey_member_post_restricted_content_message', $message, $args['post'] );
 
-View::render( 'content/disallowed/message', [ 'message' => $message ] );
+View::render( 'content/disallowed/message', array( 'message' => $message ) );

@@ -14,8 +14,8 @@ class TextDomain {
 	 */
 	public function __construct() {
 		load_plugin_textdomain( 'snow-monkey-member-post', false, basename( SNOW_MONKEY_MEMBER_POST_PATH ) . '/languages' );
-		add_filter( 'load_textdomain_mofile', [ $this, '_load_textdomain_mofile' ], 10, 2 );
-		add_action( 'enqueue_block_editor_assets', [ $this, '_set_script_translations' ], 11 );
+		add_filter( 'load_textdomain_mofile', array( $this, '_load_textdomain_mofile' ), 10, 2 );
+		add_action( 'enqueue_block_editor_assets', array( $this, '_set_script_translations' ), 11 );
 	}
 
 	/**

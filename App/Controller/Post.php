@@ -20,8 +20,8 @@ class Post {
 			return;
 		}
 
-		add_action( 'add_meta_boxes', [ $this, '_add_meta_boxes' ] );
-		add_action( 'save_post', [ $this, '_save_post' ] );
+		add_action( 'add_meta_boxes', array( $this, '_add_meta_boxes' ) );
+		add_action( 'save_post', array( $this, '_save_post' ) );
 	}
 
 	/**
@@ -37,7 +37,7 @@ class Post {
 		 * @param array active_post_types
 		 * @return array
 		 */
-		$active_post_types = apply_filters( 'snow_monkey_member_post_active_post_types', [ 'post' ] );
+		$active_post_types = apply_filters( 'snow_monkey_member_post_active_post_types', array( 'post' ) );
 
 		if ( ! in_array( $post_type, $active_post_types, true ) ) {
 			return;

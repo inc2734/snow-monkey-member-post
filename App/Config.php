@@ -14,7 +14,7 @@ class Config {
 	 *
 	 * @var array
 	 */
-	protected static $config = [];
+	protected static $config = array();
 
 	/**
 	 * Retrun specific config data

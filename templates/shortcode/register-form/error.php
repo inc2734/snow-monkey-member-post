@@ -10,7 +10,7 @@ $error_codes = explode( ',', $error_codes );
 ?>
 <div class="smmp-alert smmp-alert--warning">
 	<?php
-	$error_messages = [];
+	$error_messages = array();
 	if ( in_array( 'username_exists', $error_codes, true ) ) {
 		$error_messages[] = esc_html__( 'Sorry, that username already exists!', 'snow-monkey-member-post' );
 	}
@@ -19,7 +19,7 @@ $error_codes = explode( ',', $error_codes );
 		$error_messages[] = esc_html__( 'This email is already registered, please choose another one.', 'snow-monkey-member-post' );
 	}
 
-	if ( array_diff( [ 'username_exists', 'email_exists' ], $error_codes ) ) {
+	if ( array_diff( array( 'username_exists', 'email_exists' ), $error_codes ) ) {
 		$error_messages[] = esc_html__( 'The username or email address is incorrect.', 'snow-monkey-member-post' );
 	}
 
