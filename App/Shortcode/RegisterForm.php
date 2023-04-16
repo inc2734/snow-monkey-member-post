@@ -105,9 +105,18 @@ class RegisterForm {
 	 * @return string
 	 */
 	protected function _get_current_url() {
+		$site_url      = site_url(); // WordPress Core URL.
+		$home_url      = home_url(); // Home page URL.
+		$own_directory = untrailingslashit( str_replace( $home_url, '', $site_url ) );
+
+		preg_match( '|https?://[^/]+?(/.+?)$|', $home_url, $match );
+		$sub_directory = $match ? $match[1] : '';
+
 		$path = filter_input( INPUT_SERVER, 'REQUEST_URI' );
+		$path = preg_replace( '|^' . $sub_directory . $own_directory . '|', '', $path );
 		$path = remove_query_arg( 'login_error_codes', $path );
 		$path = remove_query_arg( 'register_error_codes', $path );
+
 		return home_url( $path );
 	}
 
