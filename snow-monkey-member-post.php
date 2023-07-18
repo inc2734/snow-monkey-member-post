@@ -36,7 +36,7 @@ class Bootstrap {
 	public function _bootstrap() {
 		load_plugin_textdomain( 'snow-monkey-member-post', false, basename( __DIR__ ) . '/languages' );
 
-		add_action( 'init', array( $this, '_add_attributes_to_blocks' ), 11 );
+		add_action( 'init', array( $this, '_add_attributes_to_blocks' ), 999999 );
 		add_action( 'init', array( $this, '_activate_autoupdate' ) );
 
 		$theme = wp_get_theme( get_template() );
