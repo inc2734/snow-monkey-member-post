@@ -1,0 +1,133 @@
+# Copyright (C) 2023 
+# This file is distributed under the same license as the Snow Monkey Member Post plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Snow Monkey Member Post 6.0.4\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/snow-monkey-member-post\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2023-11-08T14:50:39+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.9.0\n"
+"X-Domain: snow-monkey-member-post\n"
+
+#. Plugin Name of the plugin
+#: App/Controller/Post.php:48
+#: dist/js/editor-extension.js:167
+#: dist/js/editor-extension.js:124
+msgid "Snow Monkey Member Post"
+msgstr ""
+
+#. Description of the plugin
+msgid "It's a plugin that provides a function that allows only logged-in users to view articles."
+msgstr ""
+
+#: App/Controller/Edit.php:30
+msgid "Members only"
+msgstr ""
+
+#: snow-monkey-member-post.php:50
+msgid "[Snow Monkey Member Post] Needs the Snow Monkey."
+msgstr ""
+
+#: templates/block/disallowed/index.php:19
+msgid "The display of this section is restricted."
+msgstr ""
+
+#: templates/block/disallowed/index.php:20
+msgid "Please login to view this section."
+msgstr ""
+
+#: templates/content/allowed/index.php:27
+msgid "From here on, it is content for members only."
+msgstr ""
+
+#: templates/content/disallowed/index.php:25
+#: templates/excerpt/disallowed/index.php:34
+#: templates/excerpt/index.php:44
+msgid "Viewing is restricted."
+msgstr ""
+
+#: templates/content/disallowed/index.php:26
+msgid "Please login to view this page."
+msgstr ""
+
+#: templates/meta-box.php:31
+msgid "Show this article only members"
+msgstr ""
+
+#: templates/shortcode/login-form/error.php:9
+msgid "The username or password is incorrect."
+msgstr ""
+
+#: templates/shortcode/login-form/index.php:39
+msgid "Username or Email Address"
+msgstr ""
+
+#: templates/shortcode/login-form/index.php:47
+msgid "Password"
+msgstr ""
+
+#: templates/shortcode/login-form/index.php:56
+msgid "Log In"
+msgstr ""
+
+#: templates/shortcode/login-form/index.php:65
+msgid "Remember Me"
+msgstr ""
+
+#: templates/shortcode/login-form/index.php:70
+msgid "Lost your password?"
+msgstr ""
+
+#: templates/shortcode/logout/index.php:19
+msgid "Are you attempting to log out?"
+msgstr ""
+
+#: templates/shortcode/logout/index.php:19
+msgid "Log out"
+msgstr ""
+
+#: templates/shortcode/register-form/error.php:15
+msgid "Sorry, that username already exists!"
+msgstr ""
+
+#: templates/shortcode/register-form/error.php:19
+msgid "This email is already registered, please choose another one."
+msgstr ""
+
+#: templates/shortcode/register-form/error.php:23
+msgid "The username or email address is incorrect."
+msgstr ""
+
+#: templates/shortcode/register-form/index.php:39
+msgid "Username"
+msgstr ""
+
+#: templates/shortcode/register-form/index.php:47
+msgid "Email"
+msgstr ""
+
+#: templates/shortcode/register-form/index.php:56
+msgid "Register"
+msgstr ""
+
+#: templates/shortcode/register-form/index.php:63
+msgid "Registration confirmation will be emailed to you."
+msgstr ""
+
+#: templates/shortcode/register-form/registered.php:10
+msgid "Registration complete. Please check your email."
+msgstr ""
+
+#: templates/shortcode/register-form/restricted.php:10
+msgid "Currently, user registration is restricted."
+msgstr ""
+
+#: dist/js/editor-extension.js:172
+#: dist/js/editor-extension.js:133
+msgid "Show this block for members only"
+msgstr ""

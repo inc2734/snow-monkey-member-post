@@ -13,8 +13,8 @@ use Snow_Monkey\Plugin\MemberPost\App\Config;
  */
 class ContentTest extends WP_UnitTestCase {
 
-	public function setup() {
-		parent::setup();
+	public function set_up() {
+		parent::set_up();
 
 		new App\Controller\Content();
 	}

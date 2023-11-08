@@ -7,3 +7,4 @@ dist/
 .wp-env.override.json
 /.themes/
 /.export/*
+.phpunit.result.cache
