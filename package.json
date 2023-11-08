@@ -51,7 +51,7 @@
 		"js": "npm run clean:js && npm-run-all -p js:*",
 		"build": "npm-run-all -p css js",
 		"clean:zip": "rimraf snow-monkey-member-post.zip",
-		"zip:pack": "rsync -a --exclude='/vendor' --exclude='/node_modules' --exclude='.*' --exclude='*.ruleset.xml' --exclude='*.config.js' --exclude='*.xml.dist' --exclude='/sql' --exclude='/tests'  --exclude='/uploas' --exclude='package*.json' . snow-monkey-member-post && wp-env start && wp-env run composer 'install --no-dev -d snow-monkey-member-post'",
+		"zip:pack": "rsync -a --exclude='/vendor' --exclude='/node_modules' --exclude='.*' --exclude='*.ruleset.xml' --exclude='*.config.js' --exclude='*.xml.dist' --exclude='/sql' --exclude='/tests'  --exclude='/uploas' --exclude='package*.json' . snow-monkey-member-post && wp-env start && npm run composer install -- --no-dev -d snow-monkey-member-post",
 		"zip:archive": "zip -9 -qmr snow-monkey-member-post.zip snow-monkey-member-post",
 		"zip": "npm run clean:zip && npm run zip:pack && npm run zip:archive",
 		"make-pot": "npm run wp i18n -- make-pot . ./languages/snow-monkey-member-post.pot --exclude=src",
