@@ -129,7 +129,7 @@ class RegisterForm {
 		$referer = null;
 
 		if ( isset( $_SERVER['HTTP_REFERER'] ) ) {
-			$referer = $_SERVER['HTTP_REFERER'];
+			$referer = wp_unslash( $_SERVER['HTTP_REFERER'] ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 			$referer = remove_query_arg( 'login_error_codes', $referer );
 			$referer = remove_query_arg( 'register_error_codes', $referer );
 		}

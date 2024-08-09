@@ -18,7 +18,7 @@ $args = wp_parse_args(
 );
 
 $extended = View::get_extended( $args['content'] );
-echo $extended['main']; // XSS ok.
+echo $extended['main']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 
 if ( empty( $extended['extended'] ) ) {
 	return;
@@ -36,4 +36,4 @@ $message = apply_filters( 'snow_monkey_member_post_allowed_content_message', $me
 
 View::render( 'content/allowed/message', array( 'message' => $message ) );
 
-echo $extended['extended']; // XSS ok.
+echo $extended['extended']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped

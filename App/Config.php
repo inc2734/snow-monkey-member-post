@@ -38,6 +38,6 @@ class Config {
 	 * @return void
 	 */
 	protected static function _set_config_data() {
-		static::$config = include_once( SNOW_MONKEY_MEMBER_POST_PATH . '/config/config.php' );
+		static::$config = include_once SNOW_MONKEY_MEMBER_POST_PATH . '/config/config.php';
 	}
 }

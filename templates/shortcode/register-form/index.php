@@ -21,17 +21,17 @@ if ( filter_input( INPUT_GET, 'register_error_codes' ) ) {
 	View::render( 'shortcode/register-form/error' );
 }
 
-$action = site_url( 'wp-login.php?action=register', 'login_post' );
+$form_action = site_url( 'wp-login.php?action=register', 'login_post' );
 if ( class_exists( '\XO_Security' ) ) {
 	$xo_security_option = get_option( 'xo_security_options' );
 	if ( ! empty( $xo_security_option['login_page'] ) && ! empty( $xo_security_option['login_page_name'] ) ) {
 		$login_page_name = $xo_security_option['login_page_name'];
-		$action          = str_replace( 'wp-login.php', $login_page_name . '.php', $action );
+		$form_action     = str_replace( 'wp-login.php', $login_page_name . '.php', $form_action );
 	}
 }
 ?>
 
-<form name="registerform" class="smmp-register-form" action="<?php echo esc_url( $action ); ?>" method="post">
+<form name="registerform" class="smmp-register-form" action="<?php echo esc_url( $form_action ); ?>" method="post">
 	<div class="c-row c-row--margin-s">
 		<div class="c-row__col c-row__col--1-1">
 			<div class="c-form-control c-form-control--has-icon">

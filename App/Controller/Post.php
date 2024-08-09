@@ -46,7 +46,7 @@ class Post {
 		add_meta_box(
 			'snow-monkey-member-post',
 			esc_html__( 'Snow Monkey Member Post', 'snow-monkey-member-post' ),
-			function() {
+			function () {
 				View::render( 'meta-box' );
 			}
 		);

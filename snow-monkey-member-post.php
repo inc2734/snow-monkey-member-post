@@ -43,7 +43,7 @@ class Bootstrap {
 		if ( 'snow-monkey' !== $theme->template && 'snow-monkey/resources' !== $theme->template ) {
 			add_action(
 				'admin_notices',
-				function() {
+				function () {
 					?>
 						<div class="notice notice-warning is-dismissible">
 							<p>
@@ -106,7 +106,7 @@ class Bootstrap {
 		$attributes = array();
 		foreach ( glob( SNOW_MONKEY_MEMBER_POST_PATH . '/src/extension/*', GLOB_ONLYDIR ) as $dir ) {
 			foreach ( glob( $dir . '/attributes.json' ) as $file ) {
-				$_attributes = file_get_contents( $file );
+				$_attributes = file_get_contents( $file ); // phpcs:ignore WordPress.WP.AlternativeFunctions.file_get_contents_file_get_contents
 				$_attributes = json_decode( $_attributes, true );
 				$attributes  = array_merge( $attributes, $_attributes );
 			}
@@ -138,5 +138,5 @@ class Bootstrap {
 	}
 }
 
-require_once( __DIR__ . '/vendor/autoload.php' );
+require_once __DIR__ . '/vendor/autoload.php';
 new Bootstrap();

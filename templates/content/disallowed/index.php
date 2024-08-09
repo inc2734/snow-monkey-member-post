@@ -19,7 +19,7 @@ $args = wp_parse_args(
 
 $extended = View::get_extended( $args['content'] );
 if ( ! empty( $extended['extended'] ) ) {
-	echo $extended['main']; // XSS ok.
+	echo $extended['main']; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 }
 
 $message  = __( 'Viewing is restricted.', 'snow-monkey-member-post' );

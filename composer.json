@@ -1,37 +1,38 @@
 {
-  "name": "inc2734/snow-monkey-member-post",
-  "type": "wordpress-plugin",
-  "license": "GPL-2.0-or-later",
-  "authors": [
-    {
-      "name": "Takashi Kitajima",
-      "email": "inc@2inc.org",
-      "homepage": "https://2inc.org"
-    }
-  ],
-  "require-dev": {
-    "wp-coding-standards/wpcs": "^2.3",
-    "dealerdirect/phpcodesniffer-composer-installer": "^0.7.1",
-    "yoast/phpunit-polyfills": "^1.0"
-  },
-  "require": {
-    "php": ">=7.4",
-    "inc2734/wp-github-plugin-updater": "^3.1",
-    "inc2734/wp-plugin-view-controller": "^1.1"
-  },
-  "scripts" :{
-    "lint": "./vendor/squizlabs/php_codesniffer/bin/phpcs",
-    "format": "./vendor/squizlabs/php_codesniffer/bin/phpcbf",
-    "install-theme": "rm -rf ./.themes && mkdir ./.themes && wget -P ./.themes https://github.com/inc2734/snow-monkey/archive/master.zip && unzip -o -qq ./.themes/master.zip -d ./.themes && mv ./.themes/snow-monkey-master ./.themes/snow-monkey && cd .themes/snow-monkey && composer install --no-dev"
-  },
-  "autoload": {
-    "psr-4": {
-      "Snow_Monkey\\Plugin\\MemberPost\\": ""
-    }
-  },
-  "config": {
-    "allow-plugins": {
-      "dealerdirect/phpcodesniffer-composer-installer": true
-    }
-  }
+	"name": "inc2734/snow-monkey-member-post",
+	"type": "wordpress-plugin",
+	"license": "GPL-2.0-or-later",
+	"authors": [
+		{
+			"name": "Takashi Kitajima",
+			"email": "inc@2inc.org",
+			"homepage": "https://2inc.org"
+		}
+	],
+	"require-dev": {
+		"wp-coding-standards/wpcs": "^3.1",
+		"dealerdirect/phpcodesniffer-composer-installer": "^1.0",
+		"phpcompatibility/phpcompatibility-wp": "*",
+		"yoast/phpunit-polyfills": "^2.0"
+	},
+	"require": {
+		"php": ">=7.4",
+		"inc2734/wp-github-plugin-updater": "^3.1",
+		"inc2734/wp-plugin-view-controller": "^1.1"
+	},
+	"scripts" :{
+		"lint": "./vendor/squizlabs/php_codesniffer/bin/phpcs",
+		"format": "./vendor/squizlabs/php_codesniffer/bin/phpcbf",
+		"install-theme": "rm -rf ./.themes && mkdir ./.themes && wget -P ./.themes https://github.com/inc2734/snow-monkey/archive/master.zip && unzip -o -qq ./.themes/master.zip -d ./.themes && mv ./.themes/snow-monkey-master ./.themes/snow-monkey && cd .themes/snow-monkey && composer install --no-dev"
+	},
+	"autoload": {
+		"psr-4": {
+			"Snow_Monkey\\Plugin\\MemberPost\\": ""
+		}
+	},
+	"config": {
+		"allow-plugins": {
+			"dealerdirect/phpcodesniffer-composer-installer": true
+		}
+	}
 }

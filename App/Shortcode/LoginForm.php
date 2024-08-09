@@ -32,10 +32,10 @@ class LoginForm {
 	public function __construct() {
 		add_filter( 'inc2734_wp_view_controller_view', array( $this, '_set_in_the_view' ) );
 
-		// For under Snow Monkey v7
+		// For under Snow Monkey v7.
 		add_action( 'inc2734_view_controller_get_template_part_post_render', array( $this, '_unset_in_the_view' ) );
 
-		// For over Snow Monkey v8
+		// For over Snow Monkey v8.
 		add_action( 'inc2734_wp_view_controller_get_template_part_post_render', array( $this, '_unset_in_the_view' ) );
 
 		add_shortcode( 'snow_monkey_member_post_login_form', array( $this, '_view' ) );
@@ -167,7 +167,7 @@ class LoginForm {
 		$referer = null;
 
 		if ( isset( $_SERVER['HTTP_REFERER'] ) ) {
-			$referer = $_SERVER['HTTP_REFERER'];
+			$referer = wp_unslash( $_SERVER['HTTP_REFERER'] ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
 			$referer = remove_query_arg( 'login_error_codes', $referer );
 			$referer = remove_query_arg( 'register_error_codes', $referer );
 		}
