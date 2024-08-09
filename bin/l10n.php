@@ -1,11 +1,11 @@
 <?php
 /**
- * @package snow-monkey
+ * @package unitone
  * @author inc2734
  * @license GPL-2.0+
  */
 
-require_once( './wp-load.php' );
+require_once( '../../../wp-load.php' );
 
 $mo_files = glob( __DIR__ . '/../languages/*.mo' );
 foreach ( $mo_files as $mo_file ) {

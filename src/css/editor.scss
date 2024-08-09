@@ -1,8 +1,10 @@
-@import 'core/core';
+@use '../../node_modules/sass-basis/src/css/core';
 
 .smmp-extension-panel {
+	$color-accent: #cd162c !default;
+
   .components-panel__icon {
-    fill: _light($_color-gray);
+    fill: var(--_light-color-gray);
   }
 
   &--enabled .components-panel__icon {

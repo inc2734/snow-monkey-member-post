@@ -1,4 +1,4 @@
-@import 'core/core';
+@use '../../node_modules/sass-basis/src/css/core';
 
 .smmp-login-form {
   label {
@@ -23,14 +23,13 @@
       margin: 0;
       padding: 0;
 
-      @include _media-min(lg) {
+      @include core.media-min(lg) {
         display: inline-block;
         line-height: 1;
 
         &:not(:last-child) {
           border-right: 1px solid transparent;
-          border-right-color: _lighter($_color-gray); // For IE11
-          border-right-color: _var-lighter-color-gray();
+          border-right-color: var(--_lighter-color-gray);
           padding-right: 1em;
         }
 
@@ -43,6 +42,8 @@
 }
 
 .smmp-alert {
+	$alert-color: #fff9e6 !default;
+
   background-color: $alert-color;
   border: 1px solid darken($alert-color, 5%);
   color: darken(desaturate($alert-color, 60%), 70%);
