@@ -1,6 +1,6 @@
 {
-  "smmpIsRestrected": {
-    "type": "boolean",
-    "default": false
-  }
+	"smmpIsRestrected": {
+		"type": "boolean",
+		"default": false
+	}
 }

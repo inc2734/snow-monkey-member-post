@@ -4,11 +4,6 @@ module.exports = {
 	...defaultConfig,
 	rules: {
 		...defaultConfig.rules,
-		'@wordpress/i18n-text-domain': [
-			'error',
-			{
-				allowedTextDomain: 'snow-monkey-member-post',
-			},
-		],
+		'@wordpress/no-unsafe-wp-apis': 'off',
 	},
 };
