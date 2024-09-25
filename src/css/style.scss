@@ -1,63 +1,64 @@
+@use 'sass:color';
 @use '../../node_modules/sass-basis/src/css/core';
 
 .smmp-login-form {
-  label {
-    b {
-      font-size: 90%;
-      display: block;
-      margin-bottom: 3px;
-    }
-  }
+	label {
+		b {
+			font-size: 90%;
+			display: block;
+			margin-bottom: 3px;
+		}
+	}
 
-  .c-btn {
-    font-size: 90%;
-  }
+	.c-btn {
+		font-size: 90%;
+	}
 
-  &__nav {
-    list-style: none;
-    margin: 0;
-    font-size: 80%;
-    padding: 0;
+	&__nav {
+		list-style: none;
+		margin: 0;
+		font-size: 80%;
+		padding: 0;
 
-    &__item {
-      margin: 0;
-      padding: 0;
+		&__item {
+			margin: 0;
+			padding: 0;
 
-      @include core.media-min(lg) {
-        display: inline-block;
-        line-height: 1;
+			@include core.media-min(lg) {
+				display: inline-block;
+				line-height: 1;
 
-        &:not(:last-child) {
-          border-right: 1px solid transparent;
-          border-right-color: var(--_lighter-color-gray);
-          padding-right: 1em;
-        }
+				&:not(:last-child) {
+					border-right: 1px solid transparent;
+					border-right-color: var(--_lighter-color-gray);
+					padding-right: 1em;
+				}
 
-        &:not(:first-child) {
-          padding-left: 1em;
-        }
-      }
-    }
-  }
+				&:not(:first-child) {
+					padding-left: 1em;
+				}
+			}
+		}
+	}
 }
 
 .smmp-alert {
 	$alert-color: #fff9e6 !default;
 
-  background-color: $alert-color;
-  border: 1px solid darken($alert-color, 5%);
-  color: darken(desaturate($alert-color, 60%), 70%);
+	background-color: $alert-color;
+	border: 1px solid color.adjust($alert-color, $lightness: -5%);
+	color: color.adjust(color.adjust($alert-color, $saturation: 60%), $lightness: -70%);
 	padding: var(--_padding1);
 
-  &--success {
-    background-color: adjust-hue($alert-color, 40deg);
-    border: 1px solid adjust-hue(darken($alert-color, 10%), 40deg);
-    color: adjust-hue(darken(desaturate($alert-color, 70%), 80%), 40deg);
-  }
+	&--success {
+		background-color: color.adjust($alert-color, $hue: 40deg);
+		border: 1px solid color.adjust(color.adjust($alert-color, $lightness: -10%), $hue: 40deg);
+		color: color.adjust(color.adjust(color.adjust($alert-color, $saturation: 70%), $lightness: -80%), $hue: 40deg);
+	}
 
-  &--warning {
-    background-color: adjust-hue($alert-color, -30deg);
-    border: 1px solid adjust-hue(darken($alert-color, 5%), -30deg);
-    color: adjust-hue(darken(desaturate($alert-color, 60%), 70%), -30deg);
-  }
+	&--warning {
+		background-color: color.adjust($alert-color, $hue: -30deg);
+		border: 1px solid color.adjust(color.adjust($alert-color, $lightness: -5%), $hue: -30deg);
+		color: color.adjust(color.adjust(color.adjust($alert-color, $saturation: 60%), $lightness: -70%), $hue: -30deg);
+	}
 }

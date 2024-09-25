@@ -4,7 +4,7 @@
  * Description: It's a plugin that provides a function that allows only logged-in users to view articles.
  * Version: 6.2.1
  * Tested up to: 6.6
- * Requires at least: 6.2
+ * Requires at least: 6.6
  * Requires PHP: 7.4
  *
  * @package snow-monkey-member-post
