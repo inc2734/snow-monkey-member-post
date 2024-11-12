@@ -34,9 +34,8 @@ class Bootstrap {
 	 * Plugins loaded.
 	 */
 	public function _bootstrap() {
-		load_plugin_textdomain( 'snow-monkey-member-post', false, basename( __DIR__ ) . '/languages' );
-
 		add_action( 'init', array( $this, '_add_attributes_to_blocks' ), 999999 );
+		add_action( 'init', array( $this, '_load_textdomain' ) );
 		add_action( 'init', array( $this, '_activate_autoupdate' ) );
 
 		$theme = wp_get_theme( get_template() );
@@ -119,6 +118,13 @@ class Bootstrap {
 				$block->attributes[ $name ] = $detail;
 			}
 		}
+	}
+
+	/**
+	 * Load textdomain.
+	 */
+	public function _load_textdomain() {
+		load_plugin_textdomain( 'snow-monkey-member-post', false, basename( __DIR__ ) . '/languages' );
 	}
 
 	/**
