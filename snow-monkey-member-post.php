@@ -2,7 +2,7 @@
 /**
  * Plugin name: Snow Monkey Member Post
  * Description: It's a plugin that provides a function that allows only logged-in users to view articles.
- * Version: 6.2.5
+ * Version: 6.2.6
  * Tested up to: 7.1
  * Requires at least: 6.7
  * Requires PHP: 7.4
