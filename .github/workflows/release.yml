@@ -20,26 +20,34 @@ jobs:
     - name: Use Node.js
       uses: actions/setup-node@v7
       with:
-        node-version-file: 'package.json'
+        node-version-file: package.json
         cache: npm
+
+    - name: Use npm
+      run: npm install --global "npm@$(node -p 'require("./package.json").volta.npm')"
+
+    - name: Check Node.js and npm versions
+      run: |
+        node --version
+        npm --version
 
     - name: Npm install
       run: npm ci
 
     - name: Get Composer Cache Directory
       id: composer-cache
-      run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
+      run: echo "dir=$(composer config cache-files-dir)" >> "$GITHUB_OUTPUT"
 
     - name: Cache vendor
-      uses: actions/cache@v5
+      uses: actions/cache@v6
       with:
         path: ${{ steps.composer-cache.outputs.dir }}
-        key: ${{ runner.os }}-composer-${{ hashFiles('composer.lock') }}
+        key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
         restore-keys: |
           ${{ runner.os }}-composer-
 
     - name: Composer install
-      run: composer install --no-interaction --prefer-dist
+      run: composer install --no-interaction --prefer-dist --no-progress
 
     - name: Npm build
       run: npm run build
