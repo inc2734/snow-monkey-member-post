@@ -57,6 +57,7 @@ class Bootstrap {
 
 		new App\Setup\Assets();
 		new App\Setup\CurrentUser();
+		new App\Setup\Description();
 		new App\Setup\TextDomain();
 
 		new App\Controller\Post();
