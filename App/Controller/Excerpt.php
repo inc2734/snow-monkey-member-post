@@ -16,19 +16,38 @@ class Excerpt {
 	 * Constructor.
 	 */
 	public function __construct() {
-		add_filter( 'the_excerpt', array( $this, '_restrict_excerpt' ), 9 );
+		add_filter( 'get_the_excerpt', array( $this, '_restrict_excerpt' ), 11, 2 );
 	}
 
 	/**
-	 * Restrict excerp
+	 * Restrict automatically generated excerpts.
 	 *
-	 * @param string $content The content.
+	 * @param string  $content The excerpt.
+	 * @param WP_Post $post    The post.
 	 * @return string
 	 */
-	public function _restrict_excerpt( $content ) {
-		$post = get_post();
+	public function _restrict_excerpt( $content, $post ) {
+		if ( ! $post || $post->post_excerpt || post_password_required( $post ) ) {
+			return $content;
+		}
 
-		if ( ! $post || $post->post_excerpt || ! Helper::has_restriction_meta( $post->ID ) ) {
+		$has_restriction_meta = Helper::has_restriction_meta( $post->ID );
+		$restricted_post      = $has_restriction_meta && Helper::is_restricted( $post->ID );
+
+		if ( ! $restricted_post && Helper::is_restricted_member() ) {
+			$extended              = get_extended( $post->post_content );
+			$has_restricted_blocks = false;
+			$public_content        = Helper::get_public_content( $extended['main'], $has_restricted_blocks );
+			if ( $has_restricted_blocks ) {
+				$content = wp_trim_words(
+					wp_strip_all_tags( strip_shortcodes( $public_content ) ),
+					apply_filters( 'excerpt_length', 55 ),
+					apply_filters( 'excerpt_more', ' [&hellip;]' )
+				);
+			}
+		}
+
+		if ( ! $has_restriction_meta ) {
 			return $content;
 		}
 
@@ -39,7 +58,7 @@ class Excerpt {
 
 		ob_start();
 
-		if ( Helper::is_restricted( $post->ID ) ) {
+		if ( $restricted_post ) {
 			View::render( 'excerpt/disallowed/index', $args );
 		} else {
 			View::render( 'excerpt/allowed/index', $args );

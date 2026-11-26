@@ -20,16 +20,16 @@ if ( ! $args['post'] ) {
 	return;
 }
 
-$extended = get_extended( $args['post']->post_content );
-$main     = preg_replace( '/<!-- more -->/', '', $extended['main'] );
+$teaser = Helper::get_public_teaser( $args['post'] );
+$teaser = trim( wp_strip_all_tags( strip_shortcodes( Helper::get_public_content( $teaser ) ) ) );
 
-if ( ! empty( $main ) && ! empty( $extended['extended'] ) ) {
+if ( '' !== $teaser ) {
 	/**
 	 * @see https://developer.wordpress.org/reference/functions/wp_trim_excerpt/
 	 */
 	$excerpt_length = apply_filters( 'excerpt_length', 55 );
 	$excerpt_more   = apply_filters( 'excerpt_more', ' [&hellip;]' );
-	$message        = wp_trim_words( $extended['main'], $excerpt_length, $excerpt_more );
+	$message        = wp_trim_words( $teaser, $excerpt_length, $excerpt_more );
 } else {
 	$message = __( 'Viewing is restricted.', 'snow-monkey-member-post' );
 

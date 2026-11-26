@@ -77,6 +77,26 @@ class ExcerptTest extends WP_UnitTestCase {
 		$this->assertEquals( 'Viewing is restricted.', trim( strip_tags( $content ) ) );
 	}
 
+	public function test_auto_excerpt_excludes_member_only_blocks_in_nested_content() {
+		$content = '<!-- wp:group --><div class="wp-block-group">'
+			. '<!-- wp:paragraph --><p>Public text</p><!-- /wp:paragraph -->'
+			. '<!-- wp:paragraph {"smmpIsRestrected":true} --><p>Private block</p><!-- /wp:paragraph -->'
+			. '</div><!-- /wp:group -->';
+		$post = $this->_create_post( array( 'post_content' => $content, 'post_excerpt' => '' ) );
+		$this->assertSame( 'Public text', trim( strip_tags( $this->_get_the_excerpt( $post ) ) ) );
+	}
+
+	public function test_member_only_post_excerpt_filters_the_teaser_before_more() {
+		$content = '<!-- wp:paragraph {"smmpIsRestrected":true} --><p>Private block</p><!-- /wp:paragraph -->'
+			. '<!-- wp:paragraph --><p>Public teaser</p><!-- /wp:paragraph -->'
+			. '<!-- wp:more --><!--more--><!-- /wp:more -->'
+			. '<!-- wp:paragraph --><p>Private continuation</p><!-- /wp:paragraph -->';
+		$post = $this->_create_post( array( 'post_content' => $content, 'post_excerpt' => '' ) );
+		update_post_meta( $post->ID, Config::get( 'restriction-key' ), 1 );
+
+		$this->assertSame( 'Public teaser', trim( strip_tags( $this->_get_the_excerpt( $post ) ) ) );
+	}
+
 	protected function _create_post( $args ) {
 		$post_id = $this->factory->post->create( $args );
 		return get_post( $post_id );

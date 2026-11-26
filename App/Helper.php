@@ -69,4 +69,59 @@ class Helper {
 			get_post( $post_id )
 		);
 	}
+
+	/**
+	 * Return the teaser before the More marker on the first page.
+	 *
+	 * @param WP_Post $post The post.
+	 * @return string
+	 */
+	public static function get_public_teaser( $post ) {
+		list( $first_page ) = explode( '<!--nextpage-->', $post->post_content, 2 );
+		$extended           = get_extended( $first_page );
+		return '' !== trim( $extended['extended'] ) ? $extended['main'] : '';
+	}
+
+	/**
+	 * Extract public saved HTML without rendering blocks or running shortcodes.
+	 *
+	 * @param string $content               The saved content.
+	 * @param bool   $has_restricted_blocks Whether any member-only blocks were excluded.
+	 * @return string
+	 */
+	public static function get_public_content( $content, &$has_restricted_blocks = false ) {
+		return static::_get_public_block_content( parse_blocks( $content ), $has_restricted_blocks );
+	}
+
+	/**
+	 * Extract the saved HTML from unrestricted blocks.
+	 *
+	 * @param array $blocks                The parsed blocks.
+	 * @param bool  $has_restricted_blocks Whether any member-only blocks were excluded.
+	 * @return string
+	 */
+	protected static function _get_public_block_content( $blocks, &$has_restricted_blocks ) {
+		$content = array();
+
+		foreach ( $blocks as $block ) {
+			if ( ! empty( $block['attrs']['smmpIsRestrected'] ) ) {
+				$has_restricted_blocks = true;
+				continue;
+			}
+
+			$inner_block_index = 0;
+			$block_content     = '';
+			foreach ( $block['innerContent'] as $fragment ) {
+				if ( null === $fragment ) {
+					$block_content .= static::_get_public_block_content( array( $block['innerBlocks'][ $inner_block_index ] ), $has_restricted_blocks );
+					++$inner_block_index;
+				} else {
+					$block_content .= $fragment;
+				}
+			}
+			$content[] = $block_content;
+		}
+
+		return implode( ' ', $content );
+	}
 }

@@ -5,6 +5,7 @@
  * @package snow-monkey-member-post
  */
 
+use Snow_Monkey\Plugin\MemberPost\App\Config;
 use Snow_Monkey\Plugin\MemberPost\App\Setup\Description;
 
 class DescriptionTest extends WP_UnitTestCase {
@@ -65,8 +66,41 @@ class DescriptionTest extends WP_UnitTestCase {
 		$this->assertSame( '', apply_filters( 'inc2734_wp_seo_description', 'Secret' ) );
 	}
 
+	public function test_member_only_post_without_a_more_marker_has_no_generated_description() {
+		$post_id = $this->create_post( $this->paragraph( 'Members only' ) );
+		update_post_meta( $post_id, Config::get( 'restriction-key' ), 1 );
+
+		$this->assertSame( '', apply_filters( 'inc2734_wp_ogp_description', 'Members only' ) );
+		$this->assertSame( '', apply_filters( 'inc2734_wp_seo_description', 'Members only' ) );
+	}
+
+	public function test_member_only_post_description_uses_only_the_public_teaser() {
+		$content = $this->paragraph( 'Public teaser' ) . $this->paragraph( 'Private block', true )
+			. '<!-- wp:more --><!--more--><!-- /wp:more -->' . $this->paragraph( 'Private continuation' );
+		$post_id = $this->create_post( $content );
+		update_post_meta( $post_id, Config::get( 'restriction-key' ), 1 );
+
+		$member = self::factory()->user->create( array( 'role' => 'subscriber' ) );
+		foreach ( array( 0, $member ) as $user_id ) {
+			wp_set_current_user( $user_id );
+			$this->assertSame( 'Public teaser', apply_filters( 'inc2734_wp_ogp_description', 'Generated description' ) );
+			$this->assertSame( 'Public teaser', apply_filters( 'inc2734_wp_seo_description', 'Generated description' ) );
+		}
+	}
+
+	public function test_more_on_a_later_page_does_not_make_earlier_content_public() {
+		$content = $this->paragraph( 'Private first page' ) . '<!--nextpage-->'
+			. $this->paragraph( 'Second page teaser' ) . '<!--more-->' . $this->paragraph( 'Private continuation' );
+		$post_id = $this->create_post( $content );
+		update_post_meta( $post_id, Config::get( 'restriction-key' ), 1 );
+
+		$this->assertSame( '', apply_filters( 'inc2734_wp_ogp_description', 'Generated description' ) );
+		$this->assertSame( '', apply_filters( 'inc2734_wp_seo_description', 'Generated description' ) );
+	}
+
 	public function test_explicit_excerpt_and_meta_description_are_preserved() {
 		$post_id = $this->create_post( $this->paragraph( 'Secret', true ), array( 'post_excerpt' => 'Public excerpt' ) );
+		update_post_meta( $post_id, Config::get( 'restriction-key' ), 1 );
 		$this->assertSame( 'Public excerpt', apply_filters( 'inc2734_wp_ogp_description', 'Public excerpt' ) );
 		wp_update_post( array( 'ID' => $post_id, 'post_excerpt' => '' ) );
 		update_post_meta( $post_id, 'wp-seo-meta-description', 'Public description' );
