@@ -29,30 +29,34 @@ if ( class_exists( '\XO_Security' ) ) {
 		$form_action     = str_replace( 'wp-login.php', $login_page_name . '.php', $form_action );
 	}
 }
+
+$id_prefix = wp_unique_id( 'smmp-login-' ) . '-';
 ?>
 
 <form name="loginform" class="smmp-login-form" action="<?php echo esc_url( $form_action ); ?>" method="post">
 	<div class="c-row c-row--margin-s">
 		<div class="c-row__col c-row__col--1-1">
+			<label for="<?php echo esc_attr( $id_prefix . 'username' ); ?>" class="screen-reader-text"><?php esc_html_e( 'Username or Email Address', 'snow-monkey-member-post' ); ?></label>
 			<div class="c-form-control c-form-control--has-icon">
 				<div class="c-form-control__icon">
 					<i class="fas fa-user" title="<?php esc_attr_e( 'Username or Email Address', 'snow-monkey-member-post' ); ?>"></i>
 				</div>
-				<input type="text" name="log" id="user_login" value="">
+				<input type="text" name="log" id="<?php echo esc_attr( $id_prefix . 'username' ); ?>" value="">
 			</div>
 		</div>
 		<div class="c-row__col c-row__col--1-1">
+			<label for="<?php echo esc_attr( $id_prefix . 'password' ); ?>" class="screen-reader-text"><?php esc_html_e( 'Password', 'snow-monkey-member-post' ); ?></label>
 			<div class="c-form-control c-form-control--has-icon">
 				<div class="c-form-control__icon">
 					<i class="fas fa-key" title="<?php esc_attr_e( 'Password', 'snow-monkey-member-post' ); ?>"></i>
 				</div>
-				<input type="password" name="pwd" id="user_pass" value="">
+				<input type="password" name="pwd" id="<?php echo esc_attr( $id_prefix . 'password' ); ?>" value="">
 			</div>
 		</div>
 		<div class="c-row__col c-row__col--1-1">
 			<?php do_action( 'login_form' ); ?>
 
-			<button type="submit" name="wp-submit" id="wp-submit" class="c-btn">
+			<button type="submit" name="wp-submit" id="<?php echo esc_attr( $id_prefix . 'submit' ); ?>" class="c-btn">
 				<?php esc_attr_e( 'Log In', 'snow-monkey-member-post' ); ?>
 			</button>
 			<input type="hidden" name="redirect_to" value="<?php echo esc_attr( $args['redirect_to'] ); ?>">
@@ -60,8 +64,8 @@ if ( class_exists( '\XO_Security' ) ) {
 		<div class="c-row__col c-row__col--1-1">
 			<ul class="smmp-login-form__nav">
 				<li class="smmp-login-form__nav__item">
-					<label for="rememberme">
-						<input name="rememberme" type="checkbox" id="rememberme" value="forever">
+					<label for="<?php echo esc_attr( $id_prefix . 'rememberme' ); ?>">
+						<input name="rememberme" type="checkbox" id="<?php echo esc_attr( $id_prefix . 'rememberme' ); ?>" value="forever">
 						<?php esc_html_e( 'Remember Me', 'snow-monkey-member-post' ); ?>
 					</label>
 				</li>

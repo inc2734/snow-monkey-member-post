@@ -29,30 +29,34 @@ if ( class_exists( '\XO_Security' ) ) {
 		$form_action     = str_replace( 'wp-login.php', $login_page_name . '.php', $form_action );
 	}
 }
+
+$id_prefix = wp_unique_id( 'smmp-register-' ) . '-';
 ?>
 
 <form name="registerform" class="smmp-register-form" action="<?php echo esc_url( $form_action ); ?>" method="post">
 	<div class="c-row c-row--margin-s">
 		<div class="c-row__col c-row__col--1-1">
+			<label for="<?php echo esc_attr( $id_prefix . 'username' ); ?>" class="screen-reader-text"><?php esc_html_e( 'Username', 'snow-monkey-member-post' ); ?></label>
 			<div class="c-form-control c-form-control--has-icon">
 				<div class="c-form-control__icon">
 					<i class="fas fa-user" title="<?php esc_attr_e( 'Username', 'snow-monkey-member-post' ); ?>"></i>
 				</div>
-				<input type="text" name="user_login" id="user_login" value="">
+				<input type="text" name="user_login" id="<?php echo esc_attr( $id_prefix . 'username' ); ?>" value="">
 			</div>
 		</div>
 		<div class="c-row__col c-row__col--1-1">
+			<label for="<?php echo esc_attr( $id_prefix . 'email' ); ?>" class="screen-reader-text"><?php esc_html_e( 'Email', 'snow-monkey-member-post' ); ?></label>
 			<div class="c-form-control c-form-control--has-icon">
 				<div class="c-form-control__icon">
 					<i class="fas fa-envelope" title="<?php esc_attr_e( 'Email', 'snow-monkey-member-post' ); ?>"></i>
 				</div>
-				<input type="email" name="user_email" id="user_email" value="">
+				<input type="email" name="user_email" id="<?php echo esc_attr( $id_prefix . 'email' ); ?>" value="">
 			</div>
 		</div>
 		<div class="c-row__col c-row__col--1-1">
 			<?php do_action( 'register_form' ); ?>
 
-			<button type="submit" name="wp-submit" id="wp-submit" class="c-btn">
+			<button type="submit" name="wp-submit" id="<?php echo esc_attr( $id_prefix . 'submit' ); ?>" class="c-btn">
 				<?php esc_attr_e( 'Register', 'snow-monkey-member-post' ); ?>
 			</button>
 			<input type="hidden" name="redirect_to" value="<?php echo esc_attr( $args['redirect_to'] ); ?>">
