@@ -150,7 +150,7 @@ class LoginForm {
 		preg_match( '|https?://[^/]+?(/.+?)$|', $home_url, $match );
 		$sub_directory = $match ? $match[1] : '';
 
-		$path = filter_input( INPUT_SERVER, 'REQUEST_URI' );
+		$path = wp_unslash( $_SERVER['REQUEST_URI'] ?? '' ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- The URL is escaped in the form and validated before redirecting.
 		$path = preg_replace( '|^' . $sub_directory . $own_directory . '|', '', $path );
 		$path = remove_query_arg( 'login_error_codes', $path );
 		$path = remove_query_arg( 'register_error_codes', $path );
